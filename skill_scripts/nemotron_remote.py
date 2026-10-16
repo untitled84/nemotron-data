@@ -20,9 +20,10 @@ nemotron.parquet 원격 로더 — 로컬 원본 없이 GitHub(untitled84/nemotr
 환경변수
   NEMOTRON_GH_REPO  기본 untitled84/nemotron-data
   NEMOTRON_CACHE    기본 ~/.cache/nemotron
-다운로드는 gh CLI(`gh api ... contents`)로 한다. 조각마다 sha256을 검증한다.
+저장소는 공개다. 다운로드는 raw.githubusercontent.com(인증 불필요)을 먼저 쓰고,
+실패하면 gh CLI(`gh api ... contents`)로 재시도한다. 조각마다 sha256을 검증한다.
 """
-import os, json, hashlib, subprocess, threading
+import os, json, hashlib, subprocess, threading, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from nemotron_reader import NemotronParquet
 
@@ -31,13 +32,27 @@ CACHE = os.path.expanduser(os.environ.get("NEMOTRON_CACHE", "~/.cache/nemotron")
 _lock = threading.Lock()
 
 
+BRANCH = os.environ.get("NEMOTRON_GH_BRANCH", "main")
+
+
 def _gh_raw(path):
-    r = subprocess.run(
-        ["gh", "api", "-H", "Accept: application/vnd.github.raw", f"repos/{REPO}/contents/{path}"],
-        capture_output=True)
-    if r.returncode != 0:
-        raise RuntimeError(f"다운로드 실패 {path}: {r.stderr.decode('utf-8','replace')[:300]}")
-    return r.stdout
+    errs = []
+    try:                                              # 1) 공개 raw URL — 인증 불필요
+        url = f"https://raw.githubusercontent.com/{REPO}/{BRANCH}/{path}"
+        with urllib.request.urlopen(url, timeout=120) as r:
+            return r.read()
+    except Exception as e:
+        errs.append(f"raw: {e}")
+    try:                                              # 2) gh CLI — 비공개 저장소·프록시 환경
+        r = subprocess.run(
+            ["gh", "api", "-H", "Accept: application/vnd.github.raw", f"repos/{REPO}/contents/{path}"],
+            capture_output=True)
+        if r.returncode == 0:
+            return r.stdout
+        errs.append(f"gh: {r.stderr.decode('utf-8','replace')[:200]}")
+    except FileNotFoundError:
+        errs.append("gh: not installed")
+    raise RuntimeError(f"다운로드 실패 {path} — " + " | ".join(errs))
 
 
 class RemoteNemotronParquet(NemotronParquet):
