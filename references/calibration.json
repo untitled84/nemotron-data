@@ -1,0 +1,1318 @@
+{
+ "meta": {
+  "nemotron_sample": "rg0~4, 19세 이상 69,545명",
+  "measured": "2026-10-16",
+  "definition": "니모트론 언급률 = 해당 키워드가 취미 리스트·취미 서술·arts_persona·persona(+축별 추가 컬럼)에 한 번이라도 나오는 인물 비율. 외부 통계는 대개 \"이용률/참여율\"이라 정의가 다르다 — 비율은 방향과 크기의 감만 준다.",
+  "how_to_read": "ratio = 니모트론 언급률 / 외부 통계. 0.5 미만이면 니모트론이 적게 잡는 축 → 게이트 A의 환산 수치는 실제보다 작고, \"부재\" 판정은 보류한다. 1.5 초과면 과대."
+ },
+ "axes": {
+  "게임": {
+   "keywords": [
+    "게임",
+    "리그 오브",
+    "스팀",
+    "배그"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 13.6,
+     "external_pct": 59.9,
+     "external_def": "최근 1년 게임 이용률",
+     "external_src": "2024 게임이용자 실태조사(콘진원)",
+     "url": "https://mobile.newsis.com/view/NISX20241216_0002998097",
+     "ratio": 0.23,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 33.9,
+     "external_pct": 85.2,
+     "external_def": "게임 이용률",
+     "external_src": "2019 게임이용자 실태조사(콘진원) — 연령별은 2019년치가 확인된 최신",
+     "url": "https://www.munhwa.com/article/11146197",
+     "ratio": 0.4,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 23.4,
+     "external_pct": 82.0,
+     "external_def": "게임 이용률",
+     "external_src": "2019 콘진원",
+     "url": "https://www.munhwa.com/article/11146197",
+     "ratio": 0.29,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 15.5,
+     "external_pct": 53.4,
+     "external_def": "게임 이용률",
+     "external_src": "2019 콘진원",
+     "url": "https://www.munhwa.com/article/11146197",
+     "ratio": 0.29,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 7.1,
+     "external_pct": 50.7,
+     "external_def": "게임 이용률",
+     "external_src": "2019 콘진원",
+     "url": "https://www.munhwa.com/article/11146197",
+     "ratio": 0.14,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 3.2,
+     "external_pct": 30.5,
+     "external_def": "게임 이용률(60~65세)",
+     "external_src": "2019 콘진원",
+     "url": "https://www.munhwa.com/article/11146197",
+     "ratio": 0.1,
+     "verdict": "과소(<0.5)"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 45.5,
+    "여자": 21.4
+   },
+   "todo_source": null
+  },
+  "유튜브": {
+   "keywords": [
+    "유튜브",
+    "YouTube"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 42.9,
+     "external_pct": 84.9,
+     "external_def": "유튜브 이용률",
+     "external_src": "2024 소셜미디어 이용자 조사(한국언론진흥재단)",
+     "url": "https://www.news1.kr/amp/life-culture/press/5681346",
+     "ratio": 0.51,
+     "verdict": "근사"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 45.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 41.6,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 45.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 50.7,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 36.5,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 50.5,
+    "여자": 39.3
+   },
+   "todo_source": null
+  },
+  "OTT": {
+   "keywords": [
+    "넷플릭스",
+    "OTT",
+    "디즈니플러스",
+    "티빙",
+    "웨이브",
+    "쿠팡플레이"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 7.6,
+     "external_pct": 79.2,
+     "external_def": "OTT 이용률",
+     "external_src": "2024 방송매체 이용행태조사(방통위)",
+     "url": "https://newsseoul.co.kr/news/view/1065603607400457",
+     "ratio": 0.1,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 18.0,
+     "external_pct": 90.0,
+     "external_def": "OTT 이용률(10~30대 90% 이상 — 하한값)",
+     "external_src": "2024 방통위",
+     "url": "https://newsseoul.co.kr/news/view/1065603607400457",
+     "ratio": 0.2,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 19.6,
+     "external_pct": 90.0,
+     "external_def": "OTT 이용률(10~30대 90% 이상 — 하한값)",
+     "external_src": "2024 방통위",
+     "url": "https://newsseoul.co.kr/news/view/1065603607400457",
+     "ratio": 0.22,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 8.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 2.0,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 0.2,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 13.9,
+    "여자": 22.5
+   },
+   "todo_source": null
+  },
+  "러닝": {
+   "keywords": [
+    "러닝",
+    "달리기",
+    "마라톤",
+    "조깅"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona",
+    "sports_persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 3.4,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 5.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 6.0,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 4.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 3.5,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 1.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 6.8,
+    "여자": 3.2
+   },
+   "todo_source": "국민생활체육조사 종목별 표(달리기)"
+  },
+  "등산": {
+   "keywords": [
+    "등산",
+    "산행"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona",
+    "sports_persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 12.5,
+     "external_pct": 17.1,
+     "external_def": "생활체육 참여 종목 — 등산",
+     "external_src": "2025 국민생활체육조사(문체부)",
+     "url": "https://www.mt.co.kr/sports/2026/01/19/2026011912100485038",
+     "ratio": 0.73,
+     "verdict": "근사"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 4.5,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 7.5,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 12.6,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 20.0,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 13.9,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 5.2,
+    "여자": 3.8
+   },
+   "todo_source": null
+  },
+  "골프": {
+   "keywords": [
+    "골프"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona",
+    "sports_persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 2.0,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 0.7,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 1.9,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 3.0,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 3.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 1.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 1.0,
+    "여자": 0.4
+   },
+   "todo_source": "국민생활체육조사 종목별 표(골프)"
+  },
+  "헬스": {
+   "keywords": [
+    "헬스",
+    "피트니스",
+    "웨이트"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona",
+    "sports_persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 7.7,
+     "external_pct": 17.5,
+     "external_def": "생활체육 참여 종목 — 보디빌딩",
+     "external_src": "2025 국민생활체육조사(문체부)",
+     "url": "https://www.mt.co.kr/sports/2026/01/19/2026011912100485038",
+     "ratio": 0.44,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 15.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 13.7,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 8.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 5.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 2.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 16.2,
+    "여자": 14.3
+   },
+   "todo_source": null
+  },
+  "K-pop/아이돌": {
+   "keywords": [
+    "아이돌",
+    "케이팝",
+    "K-pop",
+    "K-POP",
+    "뉴진스",
+    "아이브",
+    "BTS",
+    "방탄",
+    "세븐틴",
+    "에스파",
+    "블랙핑크"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 2.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 12.6,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 2.2,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 0.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 0.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 0.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 6.2,
+    "여자": 19.6
+   },
+   "todo_source": "한국갤럽·오픈서베이 팬덤 조사"
+  },
+  "트로트": {
+   "keywords": [
+    "트로트",
+    "임영웅"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 18.7,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 0.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 1.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 7.9,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 23.2,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 37.5,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 0.4,
+    "여자": 0.1
+   },
+   "todo_source": "한국갤럽 선호 가수/장르"
+  },
+  "웹툰": {
+   "keywords": [
+    "웹툰"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 4.2,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 15.0,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 7.6,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 3.5,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 0.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 0.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 16.6,
+    "여자": 13.4
+   },
+   "todo_source": "콘진원 웹툰 이용자 실태조사(연령별 이용률)"
+  },
+  "배달앱": {
+   "keywords": [
+    "배달",
+    "배민",
+    "요기요",
+    "쿠팡이츠"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona",
+    "culinary_persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 70.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 78.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 78.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 73.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 70.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 61.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 77.9,
+    "여자": 78.7
+   },
+   "todo_source": "통계청 온라인쇼핑동향·오픈서베이 배달서비스 트렌드"
+  },
+  "주식/투자": {
+   "keywords": [
+    "주식",
+    "ETF",
+    "코인",
+    "비트코인",
+    "펀드"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona",
+    "finance_persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 5.9,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 13.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 9.3,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 6.0,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 4.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 1.9,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 15.0,
+    "여자": 12.5
+   },
+   "todo_source": "예탁결제원 개인투자자 연령별 비율"
+  },
+  "반려동물": {
+   "keywords": [
+    "반려견",
+    "반려묘",
+    "반려동물",
+    "강아지",
+    "고양이"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona",
+    "family_persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 5.2,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 6.6,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 5.4,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 5.5,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 5.6,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 4.0,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 5.0,
+    "여자": 8.2
+   },
+   "todo_source": "농식품부 동물보호 국민의식조사 양육률"
+  },
+  "캠핑": {
+   "keywords": [
+    "캠핑"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 2.6,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 2.2,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 4.9,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 5.4,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 2.2,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 0.5,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 2.9,
+    "여자": 1.4
+   },
+   "todo_source": "한국관광공사 캠핑이용자 실태조사"
+  },
+  "인스타그램": {
+   "keywords": [
+    "인스타"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 0.6,
+     "external_pct": 38.6,
+     "external_def": "인스타그램 이용률",
+     "external_src": "2024 소셜미디어 이용자 조사(언론진흥재단)",
+     "url": "https://www.news1.kr/amp/life-culture/press/5681346",
+     "ratio": 0.02,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 3.4,
+     "external_pct": 80.9,
+     "external_def": "인스타그램 이용률",
+     "external_src": "2024 언론진흥재단",
+     "url": "https://www.news1.kr/amp/life-culture/press/5681346",
+     "ratio": 0.04,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 0.6,
+     "external_pct": 70.7,
+     "external_def": "인스타그램 이용률",
+     "external_src": "2024 언론진흥재단",
+     "url": "https://www.news1.kr/amp/life-culture/press/5681346",
+     "ratio": 0.01,
+     "verdict": "과소(<0.5)"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 0.2,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 0.1,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 0.0,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 1.1,
+    "여자": 5.9
+   },
+   "todo_source": null
+  },
+  "독서": {
+   "keywords": [
+    "독서",
+    "책 읽",
+    "책을 읽"
+   ],
+   "columns": [
+    "hobbies_and_interests_list",
+    "hobbies_and_interests",
+    "arts_persona",
+    "persona"
+   ],
+   "rows": [
+    {
+     "cohort": "전체",
+     "nemotron_pct": 4.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "19-29",
+     "nemotron_pct": 6.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "30-39",
+     "nemotron_pct": 6.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "40-49",
+     "nemotron_pct": 5.8,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "50-59",
+     "nemotron_pct": 4.4,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    },
+    {
+     "cohort": "60+",
+     "nemotron_pct": 2.6,
+     "external_pct": null,
+     "external_def": null,
+     "external_src": null,
+     "url": null,
+     "ratio": null,
+     "verdict": "미확인"
+    }
+   ],
+   "sex_19_29": {
+    "남자": 5.9,
+    "여자": 7.8
+   },
+   "todo_source": "국민독서실태조사 종합독서율"
+  }
+ },
+ "structural_anchor": {
+  "현재흡연율": {
+   "남자": {
+    "nemotron": 30.0,
+    "external": 32.4
+   },
+   "여자": {
+    "nemotron": 4.1,
+    "external": 6.3
+   },
+   "external_src": "2023 국민건강영양조사(질병청) 19세 이상 일반담배 현재흡연율",
+   "url": "https://weekly.khan.co.kr/article/202412031042001"
+  }
+ }
+}

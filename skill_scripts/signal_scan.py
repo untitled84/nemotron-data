@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """2단계 '신호 실재 검색' 헬퍼 — 합성 전에 데이터에 신호가 진짜 있는지 확인한다.
 
-키워드별 풀 규모(+100만 환산) + (선택) 교집합 + 무작위 문맥 샘플을 출력한다.
+키워드별 풀 규모(+니모트론 100만 내 환산 — 한국 인구 추정치가 아니다) + (선택) 교집합 + 무작위 문맥 샘플을 출력한다.
+키워드가 references/calibration.json의 축에 해당하면 외부 통계 대비 보정 행을 함께 찍는다.
 
 오탐은 두 종류다 — 둘을 섞으면 못 잡는다:
   (a) 문자열 오탐 — 다른 단어에 부분 매칭. '라이브'는 '드라이브'에 걸린다.
@@ -64,6 +65,44 @@ def build_matcher(kw, excl):
     return m
 
 
+def _print_calibration(kws, age):
+    """키워드가 보정표의 축에 해당하면 외부 통계 대비 비율을 찍는다.
+    환산 수치는 니모트론 내부 수치다 — 외부와 얼마나 다른지 같이 보여줘야 사용자가 N과 '부재'를 제대로 판단한다."""
+    import json
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "references", "calibration.json")
+    if not os.path.exists(path):
+        return
+    try:
+        calib = json.load(open(path, encoding="utf-8"))
+    except Exception:
+        return
+    coh = None
+    if age:
+        lo, hi = age
+        for c in ("19-29", "30-39", "40-49", "50-59", "60+"):
+            a_, b_ = (int(c.split("-")[0]), int(c.split("-")[1])) if "-" in c else (60, 200)
+            if lo >= a_ and hi <= b_:
+                coh = c
+    hits = []
+    for ax, v in calib.get("axes", {}).items():
+        if any(k in kw or kw in k for kw in kws for k in v["keywords"]) or any(kw in ax for kw in kws):
+            hits.append((ax, v))
+    if not hits:
+        return
+    print("\n  [보정표 references/calibration.md]")
+    for ax, v in hits:
+        rows = {r["cohort"]: r for r in v["rows"]}
+        r = rows.get(coh) if coh else None
+        r = r if (r and r["external_pct"] is not None) else rows.get("전체")
+        if r["external_pct"] is None:
+            print(f"  · 축 '{ax}' — 니모트론 언급률 {r['nemotron_pct']}% ({r['cohort']}) · 외부 통계 미확인 → 환산 수치를 한국 규모로 읽지 마라")
+            continue
+        flag = "니모트론이 적게 잡는 축 — 실제 풀은 이보다 크다. '부재' 선언 금지" if r["ratio"] < 0.5 else \
+               "니모트론이 많이 잡는 축 — N은 보수적으로" if r["ratio"] > 1.5 else "근사 — 환산을 그대로 써도 큰 오차 없음"
+        print(f"  · 축 '{ax}' ({r['cohort']}) — 니모트론 {r['nemotron_pct']}% vs 외부 {r['external_pct']}% "
+              f"({r['external_def']} · {r['external_src']}) → 비율 {r['ratio']} · {flag}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("parquet")
@@ -102,7 +141,8 @@ def main():
     pool_est = round(n * scale)
     print(f"모집단: {n:,}명 (rg={a.rg}, {scanned:,}행 스캔"
           + (f", age {a.age[0]}~{a.age[1]}" if a.age else "") + ")")
-    print(f"  → 전체 {total:,}행 환산 시 이 조건의 모집단 ≈ {pool_est:,}명 (스캔 비율 {scanned/total*100:.1f}%)")
+    print(f"  → 니모트론 {total:,}행 내 환산 ≈ {pool_est:,}명 (스캔 비율 {scanned/total*100:.1f}%) — 한국 인구 추정치가 아니다")
+    _print_calibration(a.kw + a.kw2, a.age)
     print(f"  스캔 컬럼 {len(cols)}개: {', '.join(cols)}")
     if not a.deep and not a.cols:
         print("  ⚠ 기본 3컬럼 스캔이다. 신호가 1% 미만이거나 '부재'를 선언하려면 --deep 으로 다시 돌려라.")
@@ -111,7 +151,7 @@ def main():
     def scan(kws, label):
         hit = set()
         print(f"=== {label} ===")
-        print(f"  {'키워드':<14}{'표본':>7}{'비율':>8}{'전체 환산':>12}")
+        print(f"  {'키워드':<14}{'표본':>7}{'비율':>8}{'니모트론 환산':>12}")
         for k in kws:
             m = build_matcher(k, excl)
             idx = [i for i, (r, t) in enumerate(T) if m(t) >= 0]
@@ -124,14 +164,14 @@ def main():
             print(f"  {k:<14}{len(idx):>7,}{len(idx)/n*100:>7.2f}%{est:>11,}명{flag}")
             hit |= set(idx)
         if kws:
-            print(f"  → 합집합(중복 제거): {len(hit):,}명 ({len(hit)/n*100:.2f}%) → 전체 환산 ≈ {round(len(hit)*scale):,}명\n")
+            print(f"  → 합집합(중복 제거): {len(hit):,}명 ({len(hit)/n*100:.2f}%) → 니모트론 환산 ≈ {round(len(hit)*scale):,}명\n")
         return hit
 
     h1 = scan(a.kw, "1차 신호군") if a.kw else set()
     h2 = scan(a.kw2, "2차 신호군") if a.kw2 else set()
     if h1 and h2:
         x = h1 & h2
-        print(f"★ 교집합(1차 × 2차): {len(x):,}명 ({len(x)/n*100:.2f}%) → 전체 환산 ≈ {round(len(x)*scale):,}명"
+        print(f"★ 교집합(1차 × 2차): {len(x):,}명 ({len(x)/n*100:.2f}%) → 니모트론 환산 ≈ {round(len(x)*scale):,}명"
               f"  ← 보통 캠페인의 심장\n")
 
     # ── 문맥 샘플 — 의미 오탐을 잡는 유일한 수단 ──
