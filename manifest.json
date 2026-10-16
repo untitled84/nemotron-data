@@ -1,0 +1,1178 @@
+{
+ "source": "nvidia/Nemotron-Personas-Korea nemotron.parquet",
+ "size": 2854775231,
+ "sha256": "8128b83c300c0f9f128580f6a5f0aafadf9b87c4fb9a6fff7ad8c141be320332",
+ "num_rows": 1000000,
+ "num_row_groups": 72,
+ "text_first_column": "cultural_background",
+ "parts": [
+  {
+   "name": "head.bin",
+   "offset": 0,
+   "length": 4,
+   "rg": null,
+   "kind": "head",
+   "sha256": "fbc62d3b511368ee275ddc74117d8689b430e1427220e25d30816201d89ca7b6"
+  },
+  {
+   "name": "rg00_s.bin",
+   "offset": 4,
+   "length": 724582,
+   "rg": 0,
+   "kind": "struct",
+   "sha256": "669fda5f474a3b8769c7ce6261390408e6380551cd1680a2e2cfcfc4987fae38"
+  },
+  {
+   "name": "rg00_t.bin",
+   "offset": 724586,
+   "length": 38769977,
+   "rg": 0,
+   "kind": "text",
+   "sha256": "10275b5ee107a59a89ae80012bef38b6d4febfcafa33c7de1f895fa346a3a27f"
+  },
+  {
+   "name": "rg01_s.bin",
+   "offset": 39494563,
+   "length": 724286,
+   "rg": 1,
+   "kind": "struct",
+   "sha256": "81b26da5b5cdbba8e8163ec7bbccefdf4edb66e144aa3e226925df442e3bff81"
+  },
+  {
+   "name": "rg01_t.bin",
+   "offset": 40218849,
+   "length": 38885267,
+   "rg": 1,
+   "kind": "text",
+   "sha256": "2ca483ea2ad8e0781fbf7dca5a892d57596136ad119395c14bbbe97e9364c14c"
+  },
+  {
+   "name": "rg02_s.bin",
+   "offset": 79104116,
+   "length": 722370,
+   "rg": 2,
+   "kind": "struct",
+   "sha256": "6d68ee20feee69a682f3741fc5f4e9a4acdace127882cd9cff050b6529d3e77c"
+  },
+  {
+   "name": "rg02_t.bin",
+   "offset": 79826486,
+   "length": 38847853,
+   "rg": 2,
+   "kind": "text",
+   "sha256": "0fdd29fb4134ebd224c40cfca98d11befe65564df8dff8a4d18b5b4269fe8c29"
+  },
+  {
+   "name": "rg03_s.bin",
+   "offset": 118674339,
+   "length": 723016,
+   "rg": 3,
+   "kind": "struct",
+   "sha256": "87d9f239d6f297ce21e874448e7023ab69a5dc45a97c6bb68ea7870dd95ec250"
+  },
+  {
+   "name": "rg03_t.bin",
+   "offset": 119397355,
+   "length": 38785377,
+   "rg": 3,
+   "kind": "text",
+   "sha256": "d71260156a938ec26866457ca8657a7195951fee8d12d621b7e4d9e8e8ca485a"
+  },
+  {
+   "name": "rg04_s.bin",
+   "offset": 158182732,
+   "length": 723870,
+   "rg": 4,
+   "kind": "struct",
+   "sha256": "5afef78f03b378fc0cc99e77a9269613c2e1ed16f27643929e0866bb1eb68b9d"
+  },
+  {
+   "name": "rg04_t.bin",
+   "offset": 158906602,
+   "length": 38766505,
+   "rg": 4,
+   "kind": "text",
+   "sha256": "c955bed51172750850042fc1691a3ba20b394038941c99c5e16cb9196657193e"
+  },
+  {
+   "name": "rg05_s.bin",
+   "offset": 197673107,
+   "length": 724538,
+   "rg": 5,
+   "kind": "struct",
+   "sha256": "8b61e14170c20cdd465a199d3d7bb2423f9a63efd2a408460c0dea0cba0f20ab"
+  },
+  {
+   "name": "rg05_t.bin",
+   "offset": 198397645,
+   "length": 38792467,
+   "rg": 5,
+   "kind": "text",
+   "sha256": "b8796f3d41eb12a73e08030bd1fc2a094afd6be539745a23978b8a779dbf083b"
+  },
+  {
+   "name": "rg06_s.bin",
+   "offset": 237190112,
+   "length": 724454,
+   "rg": 6,
+   "kind": "struct",
+   "sha256": "d734798f2dde6f2d407c598818c463c7becbb0082e01e75e7763ab05a693666a"
+  },
+  {
+   "name": "rg06_t.bin",
+   "offset": 237914566,
+   "length": 38837667,
+   "rg": 6,
+   "kind": "text",
+   "sha256": "a5441ab402617cde1fe69719a739ba0f39d69043b6f6d4074d4f5eea62846989"
+  },
+  {
+   "name": "rg07_s.bin",
+   "offset": 276752233,
+   "length": 723794,
+   "rg": 7,
+   "kind": "struct",
+   "sha256": "9f0eb8194f5515dc40556b04c8981c3ca65843f0f7a371d5b8876bef84ff3ea6"
+  },
+  {
+   "name": "rg07_t.bin",
+   "offset": 277476027,
+   "length": 38870644,
+   "rg": 7,
+   "kind": "text",
+   "sha256": "a0a62ee5b6190bd69606f6c2a060cb7b2c2bd0a33bf0a91694761bb8749ad19d"
+  },
+  {
+   "name": "rg08_s.bin",
+   "offset": 316346671,
+   "length": 722031,
+   "rg": 8,
+   "kind": "struct",
+   "sha256": "7a602405b71a829fbaae940a6c83730b19aa275181f19d560a932fc430186f0e"
+  },
+  {
+   "name": "rg08_t.bin",
+   "offset": 317068702,
+   "length": 38761758,
+   "rg": 8,
+   "kind": "text",
+   "sha256": "7a0e6df7dad1da41da763a55a0acb8ee8249c352b7f76e2db8afedc1485efdef"
+  },
+  {
+   "name": "rg09_s.bin",
+   "offset": 355830460,
+   "length": 722559,
+   "rg": 9,
+   "kind": "struct",
+   "sha256": "35e6681b897a05a0cee243157b8eda2045f09c6a54a759b9a3a8f35bf5fbd906"
+  },
+  {
+   "name": "rg09_t.bin",
+   "offset": 356553019,
+   "length": 38824512,
+   "rg": 9,
+   "kind": "text",
+   "sha256": "864d6d6e9b0b2b948d6265731809260448b60c16b5b35c9ff193181954a7d1fd"
+  },
+  {
+   "name": "rg10_s.bin",
+   "offset": 395377531,
+   "length": 723814,
+   "rg": 10,
+   "kind": "struct",
+   "sha256": "ced1c022588ab7fe84aa08fe7f6ad680336f8950128a552b323aa3c5c324fd21"
+  },
+  {
+   "name": "rg10_t.bin",
+   "offset": 396101345,
+   "length": 38787012,
+   "rg": 10,
+   "kind": "text",
+   "sha256": "5467b14e247092d655aa934073b00413a03dd08253220428fbb60018d8b6d861"
+  },
+  {
+   "name": "rg11_s.bin",
+   "offset": 434888357,
+   "length": 723025,
+   "rg": 11,
+   "kind": "struct",
+   "sha256": "d2ec7f07b35f0f5451804b7d8c2968df288d967cea8d98633420529d28785062"
+  },
+  {
+   "name": "rg11_t.bin",
+   "offset": 435611382,
+   "length": 38797571,
+   "rg": 11,
+   "kind": "text",
+   "sha256": "7b4be5408ff333557b7df1e25f7e58e7fa2f7d511a4f73e4ae23ce13f5821439"
+  },
+  {
+   "name": "rg12_s.bin",
+   "offset": 474408953,
+   "length": 724353,
+   "rg": 12,
+   "kind": "struct",
+   "sha256": "a6a4c5729735719ae0c80ce270477b28aa7913a718c7c4379c0f6d43641add5a"
+  },
+  {
+   "name": "rg12_t.bin",
+   "offset": 475133306,
+   "length": 38836111,
+   "rg": 12,
+   "kind": "text",
+   "sha256": "4201dbd942b4363dd1ac04fabe65753ff50177f774237676a2fa2463dc854f20"
+  },
+  {
+   "name": "rg13_s.bin",
+   "offset": 513969417,
+   "length": 725004,
+   "rg": 13,
+   "kind": "struct",
+   "sha256": "42da297f98cf8621a7da97b60a70b4b93eda0e7ef542fb68479d9b7d71d43374"
+  },
+  {
+   "name": "rg13_t.bin",
+   "offset": 514694421,
+   "length": 38785039,
+   "rg": 13,
+   "kind": "text",
+   "sha256": "3717554d6f3b939ef9bb8feaccd3f307e394246d032113555961d59143209f64"
+  },
+  {
+   "name": "rg14_s.bin",
+   "offset": 553479460,
+   "length": 724179,
+   "rg": 14,
+   "kind": "struct",
+   "sha256": "962654bff4b42a43276d08e82e07c568758d7a62464ee68814174ae1096fcbef"
+  },
+  {
+   "name": "rg14_t.bin",
+   "offset": 554203639,
+   "length": 38850943,
+   "rg": 14,
+   "kind": "text",
+   "sha256": "c44040c305bcf750a7fd0d891602e60d71e9114842f981e085a1ff3462f428c8"
+  },
+  {
+   "name": "rg15_s.bin",
+   "offset": 593054582,
+   "length": 724404,
+   "rg": 15,
+   "kind": "struct",
+   "sha256": "e3683eb805df6e7991a995f8c096405ab1627f511c71d7ba68dfe2f3fdd325a9"
+  },
+  {
+   "name": "rg15_t.bin",
+   "offset": 593778986,
+   "length": 38840119,
+   "rg": 15,
+   "kind": "text",
+   "sha256": "e13b4fd85d45a585f45052d3085b2aae5ddf3165b038e274642ff2c5d899b42c"
+  },
+  {
+   "name": "rg16_s.bin",
+   "offset": 632619105,
+   "length": 721901,
+   "rg": 16,
+   "kind": "struct",
+   "sha256": "a4ed44ca9606ada33d743bde16ac82817f7130a15e504b81f318fdea1485827c"
+  },
+  {
+   "name": "rg16_t.bin",
+   "offset": 633341006,
+   "length": 38795306,
+   "rg": 16,
+   "kind": "text",
+   "sha256": "155fa416b66c211c4db5838c0b30eaeada782afbc0382fc1d7bda705d081a6c0"
+  },
+  {
+   "name": "rg17_s.bin",
+   "offset": 672136312,
+   "length": 724224,
+   "rg": 17,
+   "kind": "struct",
+   "sha256": "4f8514646cdaa18e2807520ad20b236c544fe2235afdb3b562bee84d82484c65"
+  },
+  {
+   "name": "rg17_t.bin",
+   "offset": 672860536,
+   "length": 38808836,
+   "rg": 17,
+   "kind": "text",
+   "sha256": "908b076aa3dbb1a37bba4b9f372ec5d4bdc1b87ccbffe453524ed2907cadabb7"
+  },
+  {
+   "name": "rg18_s.bin",
+   "offset": 711669372,
+   "length": 722016,
+   "rg": 18,
+   "kind": "struct",
+   "sha256": "193e5f431d4ce6aeb8d5b00aa54bba23ba713926f5949958efbb6ff9e2a5905b"
+  },
+  {
+   "name": "rg18_t.bin",
+   "offset": 712391388,
+   "length": 38846064,
+   "rg": 18,
+   "kind": "text",
+   "sha256": "6cdbf0fc5c5aac9d325affdd7ed0e670ea4da521481e1ea581f66c08718c7b62"
+  },
+  {
+   "name": "rg19_s.bin",
+   "offset": 751237452,
+   "length": 724489,
+   "rg": 19,
+   "kind": "struct",
+   "sha256": "068e468995f62854bf1c820d5cdfd060f8dcf4bc18fc64f83a28b16b9cd3313a"
+  },
+  {
+   "name": "rg19_t.bin",
+   "offset": 751961941,
+   "length": 38780234,
+   "rg": 19,
+   "kind": "text",
+   "sha256": "290bea29282a5d40bb3b376d1b59a9a9f0b57d4407be92c4b6ff8e70b420402d"
+  },
+  {
+   "name": "rg20_s.bin",
+   "offset": 790742175,
+   "length": 724367,
+   "rg": 20,
+   "kind": "struct",
+   "sha256": "4102f5fd3dfcfbc7d4bf2822652ae13e1a9fbe35cecb12df55cf514bb31a80cf"
+  },
+  {
+   "name": "rg20_t.bin",
+   "offset": 791466542,
+   "length": 38829326,
+   "rg": 20,
+   "kind": "text",
+   "sha256": "6bf50bdd18b1eea1c2a4ea5f26a7a3104426bcfdc399c2da9c3a8abd75c1b0da"
+  },
+  {
+   "name": "rg21_s.bin",
+   "offset": 830295868,
+   "length": 722270,
+   "rg": 21,
+   "kind": "struct",
+   "sha256": "c0bd34cdd5cbd5056487e54a1256c26ebd2c191a2845106d98158d7b5c2609e6"
+  },
+  {
+   "name": "rg21_t.bin",
+   "offset": 831018138,
+   "length": 38782929,
+   "rg": 21,
+   "kind": "text",
+   "sha256": "421e15f538a19241c779792407b405d2497350109c93cf4fba992812a684832d"
+  },
+  {
+   "name": "rg22_s.bin",
+   "offset": 869801067,
+   "length": 723983,
+   "rg": 22,
+   "kind": "struct",
+   "sha256": "619312c141ca1456f590742633c3c55ae39ee02ea474ff8eba989f047728e1a2"
+  },
+  {
+   "name": "rg22_t.bin",
+   "offset": 870525050,
+   "length": 38799075,
+   "rg": 22,
+   "kind": "text",
+   "sha256": "dd51ef22f5aba2fc4216cd467d28ef81ba99380553bc4fb7e0cb90cb8da072d1"
+  },
+  {
+   "name": "rg23_s.bin",
+   "offset": 909324125,
+   "length": 721910,
+   "rg": 23,
+   "kind": "struct",
+   "sha256": "46ff18f6ca8a45d6745068f5120ef788daa484d1bbe313af0499bce3ac5d925e"
+  },
+  {
+   "name": "rg23_t.bin",
+   "offset": 910046035,
+   "length": 38790542,
+   "rg": 23,
+   "kind": "text",
+   "sha256": "07e3462dfad017c594eb108eb1234cb6414114675049a10055f08a6cdb1ad0e5"
+  },
+  {
+   "name": "rg24_s.bin",
+   "offset": 948836577,
+   "length": 724734,
+   "rg": 24,
+   "kind": "struct",
+   "sha256": "3d13be4e260fb932f2236811b636643d212a81e22b3c58b14bda80d55cd306c7"
+  },
+  {
+   "name": "rg24_t.bin",
+   "offset": 949561311,
+   "length": 38810155,
+   "rg": 24,
+   "kind": "text",
+   "sha256": "25e4b465fea4bf1dfbe948389035795332beb24da562ac05e40a0fa18e5d7c97"
+  },
+  {
+   "name": "rg25_s.bin",
+   "offset": 988371466,
+   "length": 722187,
+   "rg": 25,
+   "kind": "struct",
+   "sha256": "149ebd158eb46bd3f274c1d439414d0725de7a41cec475e371f1c64ca99a4561"
+  },
+  {
+   "name": "rg25_t.bin",
+   "offset": 989093653,
+   "length": 38713407,
+   "rg": 25,
+   "kind": "text",
+   "sha256": "2c495ebb7209d517e674604e90e8a0d6733f7cc57fb30a3d9ef8b2717b89fbf0"
+  },
+  {
+   "name": "rg26_s.bin",
+   "offset": 1027807060,
+   "length": 725159,
+   "rg": 26,
+   "kind": "struct",
+   "sha256": "68d60bb1b45377b0690adddc9f5546a65c654f0ca7ad53d3b688ea5a9bb2ed8a"
+  },
+  {
+   "name": "rg26_t.bin",
+   "offset": 1028532219,
+   "length": 38795304,
+   "rg": 26,
+   "kind": "text",
+   "sha256": "15348422daa20d244c5c7de9e0621261466573d716a4dda7e05879e53b1ddaf5"
+  },
+  {
+   "name": "rg27_s.bin",
+   "offset": 1067327523,
+   "length": 724321,
+   "rg": 27,
+   "kind": "struct",
+   "sha256": "ab3224811e1145b6251d2a725974ec1e45b94a7eaa313a42ab10b08f5526c62f"
+  },
+  {
+   "name": "rg27_t.bin",
+   "offset": 1068051844,
+   "length": 38761045,
+   "rg": 27,
+   "kind": "text",
+   "sha256": "ba4ae648238bece4c469b60d7aee3dbaf334df6eb056259bef1e6ab9edad55fe"
+  },
+  {
+   "name": "rg28_s.bin",
+   "offset": 1106812889,
+   "length": 723437,
+   "rg": 28,
+   "kind": "struct",
+   "sha256": "d2edcef7ebe6a426fff14023db4356cded345a4bb5b7dc2bb2cc5a62f6e26d5a"
+  },
+  {
+   "name": "rg28_t.bin",
+   "offset": 1107536326,
+   "length": 38779065,
+   "rg": 28,
+   "kind": "text",
+   "sha256": "77ca5d05467e520057f60c74c22700004304d938adb56f12d159f5f72c6fca0c"
+  },
+  {
+   "name": "rg29_s.bin",
+   "offset": 1146315391,
+   "length": 724160,
+   "rg": 29,
+   "kind": "struct",
+   "sha256": "930e7b0826dfc218b9b29a1cdd9a3151a80989e8ad4811e09830b2c7711108e2"
+  },
+  {
+   "name": "rg29_t.bin",
+   "offset": 1147039551,
+   "length": 38872473,
+   "rg": 29,
+   "kind": "text",
+   "sha256": "1b84f73b1edeb4312294ef0bbd408686a6206bd447da29fcb6f3916cc8b0616e"
+  },
+  {
+   "name": "rg30_s.bin",
+   "offset": 1185912024,
+   "length": 725269,
+   "rg": 30,
+   "kind": "struct",
+   "sha256": "4671e98a010e9a308dd259344692189df94d074688ed58cf43fbfc43cd1cf2de"
+  },
+  {
+   "name": "rg30_t.bin",
+   "offset": 1186637293,
+   "length": 38854108,
+   "rg": 30,
+   "kind": "text",
+   "sha256": "19f4db745c3eab4bf5eca6beeb866174cdda9adf2794f646f05cf39d65537860"
+  },
+  {
+   "name": "rg31_s.bin",
+   "offset": 1225491401,
+   "length": 723002,
+   "rg": 31,
+   "kind": "struct",
+   "sha256": "a5aafb0bc6a1ee9cb22312f2cae8d2ec2df88f2447eaa34c92d8ed8440b0120a"
+  },
+  {
+   "name": "rg31_t.bin",
+   "offset": 1226214403,
+   "length": 38836912,
+   "rg": 31,
+   "kind": "text",
+   "sha256": "628dbd0dfdd469e3d4ca96052fc3c8f5163c91aa295ea94604bd8547ee9415ec"
+  },
+  {
+   "name": "rg32_s.bin",
+   "offset": 1265051315,
+   "length": 722309,
+   "rg": 32,
+   "kind": "struct",
+   "sha256": "85461e2dbd88946ff48791a41e9ddfcc1d1829ea7689e78cfe97775b5ff233c8"
+  },
+  {
+   "name": "rg32_t.bin",
+   "offset": 1265773624,
+   "length": 38803251,
+   "rg": 32,
+   "kind": "text",
+   "sha256": "4869c3a728a9d9e1d88d895988ef7a149fd3340a584d6f3875171051194a74aa"
+  },
+  {
+   "name": "rg33_s.bin",
+   "offset": 1304576875,
+   "length": 724426,
+   "rg": 33,
+   "kind": "struct",
+   "sha256": "52c1e7416421df2b26075a61c5e90352fbdb4388b5132f49d91c6f76ef1b1004"
+  },
+  {
+   "name": "rg33_t.bin",
+   "offset": 1305301301,
+   "length": 38766816,
+   "rg": 33,
+   "kind": "text",
+   "sha256": "479096c90c5c28ecf0f629238b60716589442046c25d09183810bfac9d0af5ac"
+  },
+  {
+   "name": "rg34_s.bin",
+   "offset": 1344068117,
+   "length": 724927,
+   "rg": 34,
+   "kind": "struct",
+   "sha256": "459ae40243274cc6a7721d76dcf599af4289b6f18c174c502e3b9b18c0c176f9"
+  },
+  {
+   "name": "rg34_t.bin",
+   "offset": 1344793044,
+   "length": 38790818,
+   "rg": 34,
+   "kind": "text",
+   "sha256": "48cff4b9373287113f5280d38d16f414edd4547d972a9c6b53816998875beeba"
+  },
+  {
+   "name": "rg35_s.bin",
+   "offset": 1383583862,
+   "length": 724052,
+   "rg": 35,
+   "kind": "struct",
+   "sha256": "8cdbe73b0d87f5c37a7cc0af9670192df2ddff99bf5261566eac7e4a2a3ddf7a"
+  },
+  {
+   "name": "rg35_t.bin",
+   "offset": 1384307914,
+   "length": 38793244,
+   "rg": 35,
+   "kind": "text",
+   "sha256": "68f68df7e9fa3acb53e1ffcc65a22508d61a02155504c04e0c39d8b428908139"
+  },
+  {
+   "name": "rg36_s.bin",
+   "offset": 1423101158,
+   "length": 723016,
+   "rg": 36,
+   "kind": "struct",
+   "sha256": "16a626a0856d1cde96a8c2f6dedab1cb4f743d8bed5cf7d5c0e1bdc0ebd0cee0"
+  },
+  {
+   "name": "rg36_t.bin",
+   "offset": 1423824174,
+   "length": 38850475,
+   "rg": 36,
+   "kind": "text",
+   "sha256": "dd9846539f3d241588a7c9e01b295ee72b9fcf67a7edbbfed65613fb1018d375"
+  },
+  {
+   "name": "rg37_s.bin",
+   "offset": 1462674649,
+   "length": 724228,
+   "rg": 37,
+   "kind": "struct",
+   "sha256": "30acbf88fcfb66914e2497b5969108a7a6340039af2b65817d571fa6e6b8d79a"
+  },
+  {
+   "name": "rg37_t.bin",
+   "offset": 1463398877,
+   "length": 38821540,
+   "rg": 37,
+   "kind": "text",
+   "sha256": "cef1d36b827447588ae3e84216e3a0d87ef1a32d8456cd2f20ed61d8dce3e88b"
+  },
+  {
+   "name": "rg38_s.bin",
+   "offset": 1502220417,
+   "length": 723907,
+   "rg": 38,
+   "kind": "struct",
+   "sha256": "0df6e4ecef17d8b7523968de25059196dd39be8f57452ed57be9fce1a9b97565"
+  },
+  {
+   "name": "rg38_t.bin",
+   "offset": 1502944324,
+   "length": 38779039,
+   "rg": 38,
+   "kind": "text",
+   "sha256": "ece02282565bb7c10b2cde9574fe2def0df67f998fd5ba02cf69f34dbf17f2bc"
+  },
+  {
+   "name": "rg39_s.bin",
+   "offset": 1541723363,
+   "length": 725400,
+   "rg": 39,
+   "kind": "struct",
+   "sha256": "115aa14cd05cc76153b715b8953235fcb605f1d8cefaa7fc17b54530e90022f8"
+  },
+  {
+   "name": "rg39_t.bin",
+   "offset": 1542448763,
+   "length": 38737873,
+   "rg": 39,
+   "kind": "text",
+   "sha256": "772ca18a4c8f09497646776576220e66b3a0d2f9b1b9c1c7b5dd4da0b5066575"
+  },
+  {
+   "name": "rg40_s.bin",
+   "offset": 1581186636,
+   "length": 723940,
+   "rg": 40,
+   "kind": "struct",
+   "sha256": "67ecf902fd6392afcb37965024cdc25f48613daf1152b84664e255d73ce4ec81"
+  },
+  {
+   "name": "rg40_t.bin",
+   "offset": 1581910576,
+   "length": 38821402,
+   "rg": 40,
+   "kind": "text",
+   "sha256": "1ea93a4752f28befac5f9c4e5e481d80f6131a87629cc6f5f7eeb9602273bf0d"
+  },
+  {
+   "name": "rg41_s.bin",
+   "offset": 1620731978,
+   "length": 724515,
+   "rg": 41,
+   "kind": "struct",
+   "sha256": "553e3d3cf98c4edffb992034620e4ff1755e7fef7cabad216493a354ee930b9f"
+  },
+  {
+   "name": "rg41_t.bin",
+   "offset": 1621456493,
+   "length": 38756987,
+   "rg": 41,
+   "kind": "text",
+   "sha256": "1d1388d659240932d73ac4d12d9a492870059f93605a768901a844b812b77b88"
+  },
+  {
+   "name": "rg42_s.bin",
+   "offset": 1660213480,
+   "length": 724409,
+   "rg": 42,
+   "kind": "struct",
+   "sha256": "60a33f95034a2e161f01ea7cd97bebd8f5c1631dcde0bcf2619453968bcfae81"
+  },
+  {
+   "name": "rg42_t.bin",
+   "offset": 1660937889,
+   "length": 38778005,
+   "rg": 42,
+   "kind": "text",
+   "sha256": "10c5926197e6bde7a4ec3df89f290c96e325ddc248a47f395a36cbc6869735a3"
+  },
+  {
+   "name": "rg43_s.bin",
+   "offset": 1699715894,
+   "length": 725321,
+   "rg": 43,
+   "kind": "struct",
+   "sha256": "834cefbe43802b4dbe2840c9bab4b7cbefd43a8669bf0442fad4ba25d815fa8d"
+  },
+  {
+   "name": "rg43_t.bin",
+   "offset": 1700441215,
+   "length": 38835223,
+   "rg": 43,
+   "kind": "text",
+   "sha256": "e348a8e68897bb2b4901a6b17c35055ab128f219aa8e18dc678c5d8d11c6aa2b"
+  },
+  {
+   "name": "rg44_s.bin",
+   "offset": 1739276438,
+   "length": 722633,
+   "rg": 44,
+   "kind": "struct",
+   "sha256": "0c195a5e5e8e7666fbfc6ff9cd3e2573a4d10e6086e23f0f45383c0f6d7bc7cd"
+  },
+  {
+   "name": "rg44_t.bin",
+   "offset": 1739999071,
+   "length": 38806526,
+   "rg": 44,
+   "kind": "text",
+   "sha256": "d865acaa03aa0d5e034847a555ac34fbf4ecdf0f9748bb936d1a79d73a45776c"
+  },
+  {
+   "name": "rg45_s.bin",
+   "offset": 1778805597,
+   "length": 725187,
+   "rg": 45,
+   "kind": "struct",
+   "sha256": "cbf71a372ba06b543c311edd40d090d1f66c300667052dad5363c6c5bc914681"
+  },
+  {
+   "name": "rg45_t.bin",
+   "offset": 1779530784,
+   "length": 38864292,
+   "rg": 45,
+   "kind": "text",
+   "sha256": "e2040fef74b83b7d8639a81eea7a973eba6400e34994618867f66edcfa7e2561"
+  },
+  {
+   "name": "rg46_s.bin",
+   "offset": 1818395076,
+   "length": 721302,
+   "rg": 46,
+   "kind": "struct",
+   "sha256": "0e6a66ee88354c8738a1e4a70baf5d350cbfa73e394e55eddb12010e8036eaf0"
+  },
+  {
+   "name": "rg46_t.bin",
+   "offset": 1819116378,
+   "length": 38838395,
+   "rg": 46,
+   "kind": "text",
+   "sha256": "14070ea52476f504676a3e83e8e7b3f772aa3567c0324d36c677b0452920464f"
+  },
+  {
+   "name": "rg47_s.bin",
+   "offset": 1857954773,
+   "length": 722929,
+   "rg": 47,
+   "kind": "struct",
+   "sha256": "24f07592f87480ec2e4053b6490efa6166543b82de0224a72f11bc82f5c11a04"
+  },
+  {
+   "name": "rg47_t.bin",
+   "offset": 1858677702,
+   "length": 38837953,
+   "rg": 47,
+   "kind": "text",
+   "sha256": "ec1842001b0896961e65d1d7ba540d098eb345a1a516b376ab561223bd55c4b2"
+  },
+  {
+   "name": "rg48_s.bin",
+   "offset": 1897515655,
+   "length": 724093,
+   "rg": 48,
+   "kind": "struct",
+   "sha256": "22186c9706b20e8d48422ecdb93f1c82d2f1eb0b8482f903384de99de915de9f"
+  },
+  {
+   "name": "rg48_t.bin",
+   "offset": 1898239748,
+   "length": 38825628,
+   "rg": 48,
+   "kind": "text",
+   "sha256": "59b369d11d660e8558e5c5eb20b3a8a4f845b17b701fc48f8fb497dc5e993625"
+  },
+  {
+   "name": "rg49_s.bin",
+   "offset": 1937065376,
+   "length": 723465,
+   "rg": 49,
+   "kind": "struct",
+   "sha256": "caefc18757a8f0a2484d5806024f0c072e071a5586b746cd4c281612ec1004a8"
+  },
+  {
+   "name": "rg49_t.bin",
+   "offset": 1937788841,
+   "length": 38775709,
+   "rg": 49,
+   "kind": "text",
+   "sha256": "db04f5a79d8b1670e23937632b3462fb91fcb174797e39b3fc7817d178d73ab8"
+  },
+  {
+   "name": "rg50_s.bin",
+   "offset": 1976564550,
+   "length": 724279,
+   "rg": 50,
+   "kind": "struct",
+   "sha256": "c9b96b6897714b5cfe84a03e14d73281d22aa97236fea5051f957f05307eb2cc"
+  },
+  {
+   "name": "rg50_t.bin",
+   "offset": 1977288829,
+   "length": 38834993,
+   "rg": 50,
+   "kind": "text",
+   "sha256": "29d6ba1339a1e0a6105a12c2b23f1184ae39b56e237510c538b888f676430667"
+  },
+  {
+   "name": "rg51_s.bin",
+   "offset": 2016123822,
+   "length": 724411,
+   "rg": 51,
+   "kind": "struct",
+   "sha256": "15d78aa004dede6ea98eb37afac9feb5d661815504c39c88f67a0dbcad11cd40"
+  },
+  {
+   "name": "rg51_t.bin",
+   "offset": 2016848233,
+   "length": 38824049,
+   "rg": 51,
+   "kind": "text",
+   "sha256": "9fc79f4e7afc64e7689514238667b0a656198b79b082ccd709f9d21e8862f4a3"
+  },
+  {
+   "name": "rg52_s.bin",
+   "offset": 2055672282,
+   "length": 723307,
+   "rg": 52,
+   "kind": "struct",
+   "sha256": "735dd053763d9927e9be2e34c56685817587f300e6caeb148bd9f08abc485bff"
+  },
+  {
+   "name": "rg52_t.bin",
+   "offset": 2056395589,
+   "length": 38786376,
+   "rg": 52,
+   "kind": "text",
+   "sha256": "94beac4e3f3987a0daf521f2cb9334acc301a06ea9297b067f6cf9b552811528"
+  },
+  {
+   "name": "rg53_s.bin",
+   "offset": 2095181965,
+   "length": 724104,
+   "rg": 53,
+   "kind": "struct",
+   "sha256": "60ea30fba8eb5adcffa7275f06bbe0a1644cd4634be2264d922d5d27cd3a036c"
+  },
+  {
+   "name": "rg53_t.bin",
+   "offset": 2095906069,
+   "length": 38861803,
+   "rg": 53,
+   "kind": "text",
+   "sha256": "1915881fa90db3f6d51ed8baa6871ed947746986f60943937628e3b5225391a9"
+  },
+  {
+   "name": "rg54_s.bin",
+   "offset": 2134767872,
+   "length": 723949,
+   "rg": 54,
+   "kind": "struct",
+   "sha256": "8274d2533733db64140e14a7d677cc9a42b60dbbca0dd3dd2ec85cdccd341ed4"
+  },
+  {
+   "name": "rg54_t.bin",
+   "offset": 2135491821,
+   "length": 38813092,
+   "rg": 54,
+   "kind": "text",
+   "sha256": "b8f823a07aa298fba9eb1a819e8e934269d0321f089c720e6c636b70ffcc1e67"
+  },
+  {
+   "name": "rg55_s.bin",
+   "offset": 2174304913,
+   "length": 723825,
+   "rg": 55,
+   "kind": "struct",
+   "sha256": "5f17621aabd3644693fc84e7aae4b3e3626a8593091fbea2dafa0004ac7ebdf6"
+  },
+  {
+   "name": "rg55_t.bin",
+   "offset": 2175028738,
+   "length": 38821040,
+   "rg": 55,
+   "kind": "text",
+   "sha256": "ff6eaf04eecdd990049614427fa5660d6eecaffe84da1332b2466e5fbea0af73"
+  },
+  {
+   "name": "rg56_s.bin",
+   "offset": 2213849778,
+   "length": 723892,
+   "rg": 56,
+   "kind": "struct",
+   "sha256": "cffa6038a298b8287502bd9e9bd9f6f9a1bbc82318bb085d581f207dd4eab111"
+  },
+  {
+   "name": "rg56_t.bin",
+   "offset": 2214573670,
+   "length": 38784754,
+   "rg": 56,
+   "kind": "text",
+   "sha256": "47311b6264e4fb57b008d74e102fbd83949082b55006f42c4f4b72acee85514e"
+  },
+  {
+   "name": "rg57_s.bin",
+   "offset": 2253358424,
+   "length": 724656,
+   "rg": 57,
+   "kind": "struct",
+   "sha256": "85526c37842faeb1d89d77ec506795ddc08339c67564c95ff262cc4b8f564682"
+  },
+  {
+   "name": "rg57_t.bin",
+   "offset": 2254083080,
+   "length": 38800548,
+   "rg": 57,
+   "kind": "text",
+   "sha256": "ba6f26e5a67e08985029cc125ea99616124e59d89150f2057a1b2c1d79feae20"
+  },
+  {
+   "name": "rg58_s.bin",
+   "offset": 2292883628,
+   "length": 724548,
+   "rg": 58,
+   "kind": "struct",
+   "sha256": "65d248cd3fc5716f6540ff3b77a27493d0106a1851a2854c1d8ede0dc5aeaa6f"
+  },
+  {
+   "name": "rg58_t.bin",
+   "offset": 2293608176,
+   "length": 38818327,
+   "rg": 58,
+   "kind": "text",
+   "sha256": "9474913ccf9f11d95e2f267146bbba37d6721266b2d3bbfd5c9b76f2df551094"
+  },
+  {
+   "name": "rg59_s.bin",
+   "offset": 2332426503,
+   "length": 722565,
+   "rg": 59,
+   "kind": "struct",
+   "sha256": "db651783d028cc4dacbab74aad95a1b6fb279ecdb309b74dfd690fcb2f5c36fc"
+  },
+  {
+   "name": "rg59_t.bin",
+   "offset": 2333149068,
+   "length": 38784504,
+   "rg": 59,
+   "kind": "text",
+   "sha256": "d98412157945ad85c596c342c4efef6d02e3d519b970479b18334ca45f12eaed"
+  },
+  {
+   "name": "rg60_s.bin",
+   "offset": 2371933572,
+   "length": 725132,
+   "rg": 60,
+   "kind": "struct",
+   "sha256": "5888c168402c0e2cb1f345a7a6ca1d29e68638d5640f97c51b209e97e2726e11"
+  },
+  {
+   "name": "rg60_t.bin",
+   "offset": 2372658704,
+   "length": 38812698,
+   "rg": 60,
+   "kind": "text",
+   "sha256": "e3fdc8481e6930a4ae78c85f6f101f76a9fea9fde0119c7d17da9cf64ab9e4bf"
+  },
+  {
+   "name": "rg61_s.bin",
+   "offset": 2411471402,
+   "length": 725098,
+   "rg": 61,
+   "kind": "struct",
+   "sha256": "af951d6981c7076d307d83751db11695f7aa05131f84996f896d599b2a93e3c7"
+  },
+  {
+   "name": "rg61_t.bin",
+   "offset": 2412196500,
+   "length": 38770769,
+   "rg": 61,
+   "kind": "text",
+   "sha256": "bae593139b80e7d002d0b505cb82d98e3953ef9978358a262c31e2d916a218b0"
+  },
+  {
+   "name": "rg62_s.bin",
+   "offset": 2450967269,
+   "length": 724153,
+   "rg": 62,
+   "kind": "struct",
+   "sha256": "f7b5df9bef4267ee4bcf985eac812519d0b420c32d0ecc1442257df89458b2c0"
+  },
+  {
+   "name": "rg62_t.bin",
+   "offset": 2451691422,
+   "length": 38847513,
+   "rg": 62,
+   "kind": "text",
+   "sha256": "996a6008918ad4435b8a1e3ee357032ed373c992add4a9388c9e85396a915538"
+  },
+  {
+   "name": "rg63_s.bin",
+   "offset": 2490538935,
+   "length": 723582,
+   "rg": 63,
+   "kind": "struct",
+   "sha256": "94ec5bd51bbb12b0b710563416123012b61223478de3a297cb431296dcaccc5d"
+  },
+  {
+   "name": "rg63_t.bin",
+   "offset": 2491262517,
+   "length": 38804572,
+   "rg": 63,
+   "kind": "text",
+   "sha256": "8f0781e1ab040de223343d04bd42f51a6e0557bb77c46f89605ea7f1a111f6f7"
+  },
+  {
+   "name": "rg64_s.bin",
+   "offset": 2530067089,
+   "length": 724686,
+   "rg": 64,
+   "kind": "struct",
+   "sha256": "89e5db50c3b681a9056c6c54971851ccdf01c73d41b9e33a8872d7249b38aa31"
+  },
+  {
+   "name": "rg64_t.bin",
+   "offset": 2530791775,
+   "length": 38835339,
+   "rg": 64,
+   "kind": "text",
+   "sha256": "f554f7609cb4a28eb39a2f35900f7c27c3f287aa094f1aa242a5592fde2ba078"
+  },
+  {
+   "name": "rg65_s.bin",
+   "offset": 2569627114,
+   "length": 723853,
+   "rg": 65,
+   "kind": "struct",
+   "sha256": "cae28a4080c0842f96cd2cc3d55ab54958f095bc3d158b2961799936607a536c"
+  },
+  {
+   "name": "rg65_t.bin",
+   "offset": 2570350967,
+   "length": 38790209,
+   "rg": 65,
+   "kind": "text",
+   "sha256": "cf2105c72b7539d7f713825803493d5dc663ba95d82f443578d7aebad930fd27"
+  },
+  {
+   "name": "rg66_s.bin",
+   "offset": 2609141176,
+   "length": 724449,
+   "rg": 66,
+   "kind": "struct",
+   "sha256": "557c7b49c19f89dbd24a0c452f752ac7e118f203988fff0c814b10f455df674c"
+  },
+  {
+   "name": "rg66_t.bin",
+   "offset": 2609865625,
+   "length": 38801169,
+   "rg": 66,
+   "kind": "text",
+   "sha256": "458355e5d798c82cb4785ec34ce248121fb1ecef39331584ae4fa2c60c69562c"
+  },
+  {
+   "name": "rg67_s.bin",
+   "offset": 2648666794,
+   "length": 724725,
+   "rg": 67,
+   "kind": "struct",
+   "sha256": "ee8ea524bf0a93d04d321fd418b3cdfab482c8cff9b4f28948e2f38106b06b0e"
+  },
+  {
+   "name": "rg67_t.bin",
+   "offset": 2649391519,
+   "length": 38757272,
+   "rg": 67,
+   "kind": "text",
+   "sha256": "ea7e63b706798f67545f4392f823ef018ad3fe6a81842311564d352c1aeca636"
+  },
+  {
+   "name": "rg68_s.bin",
+   "offset": 2688148791,
+   "length": 722848,
+   "rg": 68,
+   "kind": "struct",
+   "sha256": "1412348965865289c29c8d12f3a86bc6ccdad15c679ee5d0516ada5f61a860cb"
+  },
+  {
+   "name": "rg68_t.bin",
+   "offset": 2688871639,
+   "length": 38818269,
+   "rg": 68,
+   "kind": "text",
+   "sha256": "a5f6cf51751f5ee68f59410521d5d25b089dd5d02cc5d06508d2038f8fc085c8"
+  },
+  {
+   "name": "rg69_s.bin",
+   "offset": 2727689908,
+   "length": 724251,
+   "rg": 69,
+   "kind": "struct",
+   "sha256": "43c9fd27c90f2ffaa2bae020b72b669fb856bc737307ee557471bf0e5d47a59d"
+  },
+  {
+   "name": "rg69_t.bin",
+   "offset": 2728414159,
+   "length": 38815324,
+   "rg": 69,
+   "kind": "text",
+   "sha256": "aa7294f0d473446522dfb42064dc67d49c504dab6691b82414c62306d4deef06"
+  },
+  {
+   "name": "rg70_s.bin",
+   "offset": 2767229483,
+   "length": 724412,
+   "rg": 70,
+   "kind": "struct",
+   "sha256": "16f3606e705291932b41f1e0e869455f76816a50f9794205b6ef4c03cf0099a7"
+  },
+  {
+   "name": "rg70_t.bin",
+   "offset": 2767953895,
+   "length": 38816570,
+   "rg": 70,
+   "kind": "text",
+   "sha256": "970d901db2351fe9e9ac5666ed48ce92f68053348acbcac90ae928df1b978f5c"
+  },
+  {
+   "name": "rg71_s.bin",
+   "offset": 2806770465,
+   "length": 651236,
+   "rg": 71,
+   "kind": "struct",
+   "sha256": "dc2fe3f2c3879ff1af635a0f1268399f6d8927a01fca13a98dbefb9271b7c829"
+  },
+  {
+   "name": "rg71_t.bin",
+   "offset": 2807421701,
+   "length": 34737334,
+   "rg": 71,
+   "kind": "text",
+   "sha256": "84d3b27693bcabd891b6579b91a27a7c531c2a506b2f634bc710526cc7d33987"
+  },
+  {
+   "name": "footer.bin",
+   "offset": 2842159035,
+   "length": 12616196,
+   "rg": null,
+   "kind": "footer",
+   "sha256": "fb6870a790c2070e8858a7c58db6d4ae4efeedf10903ac4cbfa0ae1928f8cc80"
+  }
+ ]
+}
