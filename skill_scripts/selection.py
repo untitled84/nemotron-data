@@ -62,7 +62,7 @@ def _pct(x, n):
 
 # ---------------------------------------------------------------- A. 기록
 def log_selection(seg, pool, scores, chosen, formula, hard_filter=None, rg_used=None,
-                  scanned=None, note=""):
+                  scanned=None, note="", fit_quotes=None, criterion=""):
     """한 세그의 선발 기록을 dict로 만든다.
 
     pool    : 하드 필터를 통과한 후보 행(dict) 리스트 — uuid 필수, 구조형 필드 있으면 같이 기록
@@ -71,7 +71,13 @@ def log_selection(seg, pool, scores, chosen, formula, hard_filter=None, rg_used=
     formula : 점수식. 자유 형식 dict — 최소한 {"설명": "..."}는 넣는다.
               키워드식이면 {"keywords": {컬럼: {키워드: 가중치}}}, Big5면 {"big5": {특성: 가중치}} 권장
     hard_filter : 세그 정의에 쓴 필드와 조건 — 감사에서 이 필드는 제외된다
+    fit_quotes  : {uuid: "판별 기준을 충족하는 원문 한 문장"} — 선발 인물마다 **필수**. 하드 필터 키워드가 아니라
+                  세그의 판별 기준(행동)을 그 사람이 실제로 보이는 문장. 없으면 그 사람은 세그에 안 맞는 것 → 감사 🔴.
+                  첫 실전(BEREX)에서 '신제품' 키워드가 빵집 신제품을 잡아 수면×기기 세그에 69세 주부가 들어왔다 —
+                  풀 수준 오탐 확인(10개 샘플)으로는 못 잡고, 뽑힌 사람 각자의 문맥을 봐야 잡힌다.
+    criterion   : 세그 판별 기준 한 줄(게이트 A 표의 그 문장) — 인용과 나란히 기록된다
     """
+    fit_quotes = fit_quotes or {}
     chosen = list(chosen)
     byu = {r["uuid"]: r for r in pool}
     missing = [u for u in chosen if u not in byu]
@@ -105,6 +111,8 @@ def log_selection(seg, pool, scores, chosen, formula, hard_filter=None, rg_used=
             "top10": [c["score"] for c in cand[:10]],
         },
         "note": note,
+        "criterion": criterion,
+        "fit_quotes": {u: fit_quotes.get(u, "") for u in chosen},
         "candidates": cand,
     }
 
@@ -146,6 +154,13 @@ def audit_selection(records, accepted=()):
             flags.append({"seg": seg, "field": "score", "level": "🔴",
                           "msg": f"선발 {n}명 전원 동점({sc[0]}) — 풀에서 같은 점수가 {n_tied}명. "
                                  f"상위 N 동점은 사실상 무작위 선발이다. 점수식을 더 정교하게."})
+        # 세그 적합 인용 — 없으면 세그에 안 맞는 사람이다 (하드 필터 통과 ≠ 판별 기준 충족)
+        fq = rec.get("fit_quotes") or {}
+        missing = [u[:8] for u in rec.get("chosen", []) if not (fq.get(u) or "").strip()]
+        if missing:
+            flags.append({"seg": seg, "field": "fit", "level": "🔴",
+                          "msg": f"세그 적합 인용 없음: {missing} — 판별 기준을 충족하는 원문이 없으면 그 사람은 이 세그가 아니다. "
+                                 f"다음 순위로 교체하거나, 인용을 찾아 적어라(하드 필터 키워드 문맥이 오탐이면 교체)."})
         # 순위 밖 선발 — 점수식과 실제 선발이 어긋남 (눈으로 집었거나 점수식이 기록과 다름)
         rk = rec.get("chosen_ranks") or []
         if n >= 1 and rk and max(rk) > max(n * 3, n + 5):
@@ -209,6 +224,14 @@ def write_audit_md(records, flags, path):
             mark = "**" if c["chosen"] else ""
             L.append(f"| {c['rank']} | {mark}{str(c.get('uuid'))[:8]}{mark} | {c['score']} | {c.get('age','')} | "
                      f"{c.get('sex','')} | {c.get('occupation','')} | {c.get('income_bracket','')} |")
+        fq = rec.get("fit_quotes") or {}
+        if rec.get("criterion") or fq:
+            L.append("")
+            L.append(f"**세그 적합 근거** — 판별 기준: {rec.get('criterion') or '(미기재)'}")
+            L.append("")
+            for u in rec.get("chosen", []):
+                q = (fq.get(u) or "").strip()
+                L.append(f"- `{u[:8]}` — {('“' + q + '”') if q else '⚠ 인용 없음 → 세그 불일치, 교체 대상'}")
         extra = [c for c in rec["candidates"][10:] if c["chosen"]]
         for c in extra:
             L.append(f"| {c['rank']} | **{str(c.get('uuid'))[:8]}** | {c['score']} | {c.get('age','')} | "
