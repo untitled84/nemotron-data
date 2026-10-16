@@ -117,12 +117,15 @@ def save_log(records, path):
 
 # ---------------------------------------------------------------- C. 감사
 def _judge_cat(ch_share, pool_share, accepted):
+    """🔴는 '풀에 없던 집중'일 때만. 첫 실전(BEREX 2026-10-16)에서 풀 69~72%인 값이 3/3로 뽑힌 걸
+    🔴로 찍었는데, n=3에서 풀 70% 값이 3/3일 확률은 34%다 — 우연을 결함으로 몰았다.
+    그래서 🔴 조건에 '풀 점유 ≤50%'(선발 집중이 풀의 2배 이상)를 더한다. 풀 >50%인 값의 3/3은 🟡로 적어만 둔다."""
     cp, pp = _pct(ch_share, 1), _pct(pool_share, 1)
     if accepted:
         return "⚪"
-    if cp >= 78 and cp - pp >= 30:
+    if cp >= 78 and pp <= 50 and cp - pp >= 30:
         return "🔴"
-    if cp >= 56 and cp - pp >= 20:
+    if (cp >= 78 and cp - pp >= 10) or (cp >= 56 and cp - pp >= 20):
         return "🟡"
     return "🟢"
 
