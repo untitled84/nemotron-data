@@ -117,6 +117,9 @@ def log_selection(seg, pool, scores, chosen, formula, hard_filter=None, rg_used=
     }
 
 
+SMALL_N = 3   # 세그당 3명 이하면 구조형 쏠림은 🔴로 막지 않는다(기록만)
+SMALL_N_NOTE = (" — n≤3이라 🔴 대신 🟡: 필드 10개×3명이면 아무렇게나 뽑아도 어딘가 3/3이 나온다. "
+                "이 쏠림 때문에 세그 적합자를 빼지 마라. 같은 필드가 여러 세그에서 반복되고 그 필드가 점수식에 들어 있으면 점수식을 고쳐라.")
 POOL_ZERO_MAX = 15   # 풀 점검 0점 비율 상한(%) — BEREX 실측: 0점은 심사자 간 안정, 2점 비율은 심사자마다 크게 흔들림
 POOL_FULL_READ_MAX = 400   # 이 이하 풀은 0점 초과 시 전수 읽기
 
@@ -233,9 +236,13 @@ def audit_selection(records, accepted=(), handoff=False):
             ch_share = cnt / len(vals_ch)
             pool_share = Counter(vals_pool)[top] / len(vals_pool)
             lv = _judge_cat(ch_share, pool_share, f in accepted)
+            capped = (lv == "🔴" and n <= SMALL_N)
+            if capped:
+                lv = "🟡"
             flags.append({"seg": seg, "field": f, "level": lv, "value": str(top),
                           "chosen_pct": _pct(ch_share, 1), "pool_pct": _pct(pool_share, 1),
-                          "msg": f"'{top}' 선발 {cnt}/{len(vals_ch)}({_pct(ch_share,1)}%) vs 풀 {_pct(pool_share,1)}%"})
+                          "msg": f"'{top}' 선발 {cnt}/{len(vals_ch)}({_pct(ch_share,1)}%) vs 풀 {_pct(pool_share,1)}%"
+                                 + (SMALL_N_NOTE if capped else "")})
         if "age" not in skip:
             ap = [c["age"] for c in cand if isinstance(c.get("age"), (int, float))]
             ac = [c["age"] for c in chosen if isinstance(c.get("age"), (int, float))]
@@ -243,10 +250,80 @@ def audit_selection(records, accepted=(), handoff=False):
                 sd = statistics.pstdev(ap) or 1.0
                 d = (statistics.mean(ac) - statistics.mean(ap)) / sd
                 lv = "⚪" if "age" in accepted else ("🔴" if abs(d) >= 1.0 else "🟡" if abs(d) >= 0.6 else "🟢")
+                age_capped = (lv == "🔴" and len(ac) <= SMALL_N)
+                if age_capped:
+                    lv = "🟡"
                 flags.append({"seg": seg, "field": "age", "level": lv, "d": round(d, 2),
                               "msg": f"선발 평균 {statistics.mean(ac):.1f}세 vs 풀 평균 {statistics.mean(ap):.1f}세 "
-                                     f"(풀 표준편차 {sd:.1f}, d={d:+.2f})"})
+                                     f"(풀 표준편차 {sd:.1f}, d={d:+.2f})" + (SMALL_N_NOTE if age_capped else "")})
     return flags
+
+
+# ---------------------------------------------------------------- D. 다양성 최소 규칙
+AGE_BANDS = [(19, 29, "20대"), (30, 39, "30대"), (40, 49, "40대"), (50, 200, "50대 이상")]
+
+
+def _band(age):
+    for lo, hi, name in AGE_BANDS:
+        if isinstance(age, (int, float)) and lo <= age <= hi:
+            return name
+    return None
+
+
+def diversity_check(chosen_rows, pool_rows, n_bands_selected=1, dominant=0.75):
+    """세그 안 다양성 **최소 규칙** — 이것만 본다. 나머지 필드(학력·가구·주거·지역…)는 보지 않는다.
+    ① 성별: N명 전원 같은 성별이면 위반 — 단, 풀에서 그 성별이 75% 이상이면 정상(풀이 원래 그렇다).
+    ② 연령대: 사용자가 연령대를 2개 이상 골랐는데 N명 전원 한 연령대면 위반 — 같은 75% 예외.
+    반환: 위반 문자열 리스트(빈 리스트 = 통과).
+    **이 규칙은 세그 적합(2점) 후보 안에서만 적용한다.** 적합자끼리로 규칙을 못 맞추면
+    규칙을 포기하고 적합을 지킨다(note에 '다양성 최소 규칙 미충족 — 적합 후보 부족'을 쓴다).
+    1점(근접)을 다양성 때문에 넣지 마라."""
+    out = []
+    if len(chosen_rows) < 2:
+        return out
+    def share(field, val, f=lambda x: x):
+        vs = [f(r.get(field)) for r in pool_rows if r.get(field) not in (None, "")]
+        return (sum(1 for v in vs if v == val) / len(vs)) if vs else 0
+    sexes = {r.get("sex") for r in chosen_rows}
+    if len(sexes) == 1:
+        v = next(iter(sexes))
+        if share("sex", v) < dominant:
+            out.append(f"성별 전원 '{v}' (풀 {round(share('sex', v)*100)}%)")
+    if n_bands_selected >= 2:
+        bands = {_band(r.get("age")) for r in chosen_rows}
+        if len(bands) == 1:
+            v = next(iter(bands))
+            if share("age", v, _band) < dominant:
+                out.append(f"연령대 전원 '{v}' (풀 {round(share('age', v, _band)*100)}%)")
+    return out
+
+
+# ---------------------------------------------------------------- E. 핸드오프 풀
+def save_handoff(records, path, brief="", rg_note=""):
+    """2-b(룩어라이크)로 넘길 세그별 풀을 한 파일로. 풀 점검이 끝난 기록만 넣는다(없으면 ValueError).
+    형식: {version, brief, rule, segments:{세그명: {criterion, pool_size, pool_uuids, check_mode,
+           zero_pct_at_check, one_pct_at_check, panel_uuids, caveat}}}"""
+    out = {"version": 1, "brief": brief, "rg": rg_note,
+           "rule": "nemotron-panel-synthesis 5단계 풀 점검 — full_read/top_read는 0점 제거 후 풀, sampled는 그물 풀 그대로",
+           "segments": {}}
+    for r in records:
+        pc = r.get("pool_check")
+        if not pc:
+            raise ValueError(f"풀 점검 없는 세그: {r['seg']} — log_pool_check 먼저")
+        z, o = pc.get("zero_pct"), pc.get("one_pct")
+        if pc["mode"] == "sampled":
+            cav = f"무작위 {pc['n_read']}명 점검 0점 {z}% — 이 비율만큼 비세그 인물이 섞였을 수 있음"
+        else:
+            cav = f"{pc['mode']} — 읽은 {pc['n_read']}명 중 0점 제거"
+        if o is not None and o >= 60:
+            cav += f" · 1점(한쪽 조건만·태도 수준) {o}% — 이 풀은 '판별 기준의 일부만 확인된 사람'이 다수"
+        out["segments"][r["seg"]] = {
+            "criterion": r.get("criterion", ""), "pool_size": r["pool_size"],
+            "pool_uuids": [c["uuid"] for c in r["candidates"]],
+            "check_mode": pc["mode"], "zero_pct_at_check": z, "one_pct_at_check": o,
+            "panel_uuids": r["chosen"], "caveat": cav}
+    json.dump(out, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    return path
 
 
 def has_red(flags):

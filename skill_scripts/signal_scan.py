@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""2단계 '신호 실재 검색' 헬퍼 — 합성 전에 데이터에 신호가 진짜 있는지 확인한다.
+r"""2단계 '신호 실재 검색' 헬퍼 — 합성 전에 데이터에 신호가 진짜 있는지 확인한다.
 
 키워드별 풀 규모(+니모트론 100만 내 환산 — 한국 인구 추정치가 아니다) + (선택) 교집합 + 무작위 문맥 샘플을 출력한다.
 키워드가 references/calibration.json의 축에 해당하면 외부 통계 대비 보정 행을 함께 찍는다.
@@ -30,8 +30,15 @@
   --rg          row group 인덱스(기본 0). 인구정렬이라 1~2개면 비율 추정에 충분.
   --cols        스캔 컬럼 직접 지정
   --samples     문맥 샘플 수(기본 10, 무작위 추출)
+  --re / --re2  정규식 신호군(키워드 대신·함께). references/net_patterns.md 의 그물을 그대로 넣는다.
+  --neg         매칭 전에 텍스트에서 지울 정규식(비유·금융 문맥 제외 등). 모든 신호군에 적용.
+  --body        수면·통증 같은 신체 서사는 신체·일상 컬럼에서만 찾는다(finance_persona 제외).
+  예) python3 signal_scan.py gh --age 30 69 --deep \
+        --re "불면|밤잠|잠을 설|숙면|뒤척" --neg "(밤잠을 설칠|잠을 설칠)\s*(정도|만큼)" --body \
+        --re2 "IT 기기|가젯|테크|태블릿|스마트워치|명상 음악|ASMR|팟캐스트|앱으로|앱을"
+      ('앱'·'유튜브' 단독은 30~69세의 절반 이상에 걸린다 — 기기 성향 신호가 아니다)
 """
-import argparse, os, random, sys
+import argparse, os, random, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from nemotron_reader import NemotronParquet
 from nemotron_remote import open_nemotron   # 로컬 원본이 없으면 GitHub에서 필요한 구간만 받는다
@@ -116,9 +123,15 @@ def main():
                     help="서술형까지 확장 스캔 — 신호 <1%거나 부재 선언 시 필수")
     ap.add_argument("--cols", nargs="+", default=None, help="스캔 컬럼 직접 지정")
     ap.add_argument("--seed", type=int, default=0, help="샘플 재현용")
+    ap.add_argument("--re", nargs="*", default=[], help="1차 정규식 신호군")
+    ap.add_argument("--re2", nargs="*", default=[], help="2차 정규식 신호군")
+    ap.add_argument("--neg", nargs="*", default=[], help="매칭 전 텍스트에서 지울 정규식")
+    ap.add_argument("--body", action="store_true", help="신체·일상 컬럼만(finance 제외)")
     a = ap.parse_args()
 
     cols = a.cols or (DEEP_COLS if a.deep else TEXT_COLS)
+    if a.body:
+        cols = [c for c in cols if c != "finance_persona"] or ["healthcare_persona", "detailed_persona"]
     excl = {}
     for e in a.exclude_prefix:
         k, v = e.split("=", 1)
@@ -129,7 +142,12 @@ def main():
     scanned = len(rows)
     if a.age:
         rows = [r for r in rows if r["age"] and a.age[0] <= r["age"] <= a.age[1]]
-    T = [(r, " ".join((r[c] or "") for c in cols)) for r in rows]
+    negs = [re.compile(x) for x in a.neg]
+    def _clean(t):
+        for g in negs:
+            t = g.sub(" ", t)
+        return t
+    T = [(r, _clean(" ".join((r[c] or "") for c in cols))) for r in rows]
     n = len(T)
     if not n:
         print("모집단 0명 — 조건을 넓혀라"); return
@@ -148,12 +166,21 @@ def main():
         print("  ⚠ 기본 3컬럼 스캔이다. 신호가 1% 미만이거나 '부재'를 선언하려면 --deep 으로 다시 돌려라.")
     print()
 
+    def matcher(k):
+        if k.startswith("re:"):
+            g = re.compile(k[3:])
+            def m(t):
+                x = g.search(t)
+                return x.start() if x else -1
+            return m
+        return build_matcher(k, excl)
+
     def scan(kws, label):
         hit = set()
         print(f"=== {label} ===")
         print(f"  {'키워드':<14}{'표본':>7}{'비율':>8}{'니모트론 환산':>12}")
         for k in kws:
-            m = build_matcher(k, excl)
+            m = matcher(k)
             idx = [i for i, (r, t) in enumerate(T) if m(t) >= 0]
             est = round(len(idx) * scale)
             flag = ""
@@ -167,8 +194,10 @@ def main():
             print(f"  → 합집합(중복 제거): {len(hit):,}명 ({len(hit)/n*100:.2f}%) → 니모트론 환산 ≈ {round(len(hit)*scale):,}명\n")
         return hit
 
-    h1 = scan(a.kw, "1차 신호군") if a.kw else set()
-    h2 = scan(a.kw2, "2차 신호군") if a.kw2 else set()
+    k1 = a.kw + ["re:" + x for x in a.re]
+    k2 = a.kw2 + ["re:" + x for x in a.re2]
+    h1 = scan(k1, "1차 신호군") if k1 else set()
+    h2 = scan(k2, "2차 신호군") if k2 else set()
     if h1 and h2:
         x = h1 & h2
         print(f"★ 교집합(1차 × 2차): {len(x):,}명 ({len(x)/n*100:.2f}%) → 니모트론 환산 ≈ {round(len(x)*scale):,}명"
@@ -181,13 +210,13 @@ def main():
     print("=== 문맥 샘플 (무작위) — 과녁/비과녁을 세어라 ===")
     print("    카운트만 믿지 마라. 아래 샘플 중 몇 개가 '진짜 그 뜻'인지 세서")
     print("    카운트에 곱해라. 과녁 30% 미만이면 그 키워드는 버리고 더 좁게 다시 스캔.\n")
-    for k in (a.kw + a.kw2):
-        m = build_matcher(k, excl)
+    for k in (k1 + k2):
+        m = matcher(k)
         hits = [(t, m(t)) for r, t in T if m(t) >= 0]
         if not hits:
             continue
         for t, i in rnd.sample(hits, min(a.samples, len(hits))):
-            print(f"  [{k}] …{t[max(0,i-30):i+30+len(k)]}…".replace("\n", " "))
+            print(f"  [{k[:24]}] …{t[max(0,i-30):i+50]}…".replace("\n", " "))
         print(f"       ↑ {len(hits):,}건 중 무작위 {min(a.samples,len(hits))}건. 과녁 __/{min(a.samples,len(hits))} → 보정 카운트 ≈ ___\n")
 
 
