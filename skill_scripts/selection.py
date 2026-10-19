@@ -117,6 +117,30 @@ def log_selection(seg, pool, scores, chosen, formula, hard_filter=None, rg_used=
     }
 
 
+POOL_ZERO_MAX = 15   # 풀 점검 0점 비율 상한(%) — BEREX 실측: 0점은 심사자 간 안정, 2점 비율은 심사자마다 크게 흔들림
+POOL_FULL_READ_MAX = 400   # 이 이하 풀은 0점 초과 시 전수 읽기
+
+
+def log_pool_check(rec, judged, mode="sampled", note=""):
+    """풀 점검 결과를 선발 기록에 붙인다.
+    judged : {uuid: 0|1|2} — 풀에서 **무작위**로 뽑아 원문을 읽고 매긴 점수(sampled), 또는 풀 전수(full_read)·상위 K(top_read).
+             2=판별 기준 행동이 원문에 명시 / 1=한쪽 조건만·태도 수준 / 0=없음 또는 키워드 문맥이 다름.
+    mode   : "sampled"(무작위 표본, 기본 25명) | "full_read"(풀 전수 — 0점을 풀에서 뺐다) | "top_read"(점수 상위 K만 읽어 풀로 씀)
+    지표는 0점 비율이다. 2점 비율은 심사자(LLM)마다 1/2 경계를 다르게 그어 숫자로 쓰면 안 된다."""
+    vals = [int(v) for v in judged.values()]
+    n = len(vals)
+    rec["pool_check"] = {
+        "mode": mode, "n_read": n,
+        "zero_pct": _pct(vals.count(0), n) if n else None,
+        "one_pct": _pct(vals.count(1), n) if n else None,
+        "two_pct": _pct(vals.count(2), n) if n else None,
+        "pool_size_at_check": rec.get("pool_size"),
+        "judged": {u: int(v) for u, v in judged.items()},
+        "note": note,
+    }
+    return rec
+
+
 def save_log(records, path):
     json.dump({"version": 1, "segments": records}, open(path, "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
@@ -138,12 +162,30 @@ def _judge_cat(ch_share, pool_share, accepted):
     return "🟢"
 
 
-def audit_selection(records, accepted=()):
-    """세그별 선발 쏠림 측정. 반환: flags 리스트(dict). 🔴가 하나라도 있으면 산출 금지."""
+def audit_selection(records, accepted=(), handoff=False):
+    """세그별 선발 쏠림 측정. 반환: flags 리스트(dict). 🔴가 하나라도 있으면 산출 금지.
+    handoff=True : 이 패널(과 후보 풀)을 2-b 룩어라이크로 넘긴다 — 풀 점검이 필수가 된다."""
     accepted = set(accepted or ())
     flags = []
     for rec in records:
         seg = rec["seg"]; cand = rec["candidates"]
+        # 풀 점검 — 키워드 그물은 정밀도를 못 올린다. 읽어서 0점 비율을 잰다.
+        pc = rec.get("pool_check")
+        if not pc:
+            if handoff:
+                flags.append({"seg": seg, "field": "pool", "level": "🟡",
+                              "msg": "풀 점검 없음 — 2-b로 넘길 풀인데 0점(세그 아님) 비율을 안 쟀다. 무작위 25명을 읽어 log_pool_check."})
+        else:
+            z = pc.get("zero_pct")
+            if z is not None and z > POOL_ZERO_MAX and pc.get("mode") == "sampled":
+                big = (rec.get("pool_size") or 0) > POOL_FULL_READ_MAX
+                flags.append({"seg": seg, "field": "pool", "level": "🔴",
+                              "msg": f"풀 0점 {z}% > {POOL_ZERO_MAX}% (표본 {pc['n_read']}명) — 풀에 세그가 아닌 사람이 섞여 있다. "
+                                     + ("풀이 커서 전수 대신: 반복 오탐 패턴을 그물 제외 규칙에 한 번 반영 후 재측정, 그래도 넘으면 상위 400명 읽기(top_read)."
+                                        if big else "풀 전수 읽기(full_read)로 0점을 빼라.")})
+            elif z is not None:
+                flags.append({"seg": seg, "field": "pool", "level": "🟢",
+                              "msg": f"풀 점검 {pc['mode']} · {pc['n_read']}명 읽음 · 0점 {z}%"})
         chosen = [c for c in cand if c["chosen"]]
         n, N = len(chosen), len(cand)
         skip = set(rec.get("hard_filter", {}).keys())
@@ -224,6 +266,17 @@ def write_audit_md(records, flags, path):
             mark = "**" if c["chosen"] else ""
             L.append(f"| {c['rank']} | {mark}{str(c.get('uuid'))[:8]}{mark} | {c['score']} | {c.get('age','')} | "
                      f"{c.get('sex','')} | {c.get('occupation','')} | {c.get('income_bracket','')} |")
+        extra = [c for c in rec["candidates"][10:] if c["chosen"]]
+        for c in extra:
+            L.append(f"| {c['rank']} | **{str(c.get('uuid'))[:8]}** | {c['score']} | {c.get('age','')} | "
+                     f"{c.get('sex','')} | {c.get('occupation','')} | {c.get('income_bracket','')} |")
+        pc = rec.get("pool_check")
+        L.append("")
+        if pc:
+            L.append(f"**풀 점검** — {pc['mode']} · {pc['n_read']}명 읽음 · 0점 {pc['zero_pct']}% · 1점 {pc['one_pct']}% · 2점 {pc['two_pct']}%"
+                     + (f" · {pc['note']}" if pc.get('note') else "") + "  (지표는 0점 비율. 2점 비율은 심사자 편차가 커서 참고만)")
+        else:
+            L.append("**풀 점검** — 없음")
         fq = rec.get("fit_quotes") or {}
         if rec.get("criterion") or fq:
             L.append("")
@@ -232,10 +285,6 @@ def write_audit_md(records, flags, path):
             for u in rec.get("chosen", []):
                 q = (fq.get(u) or "").strip()
                 L.append(f"- `{u[:8]}` — {('“' + q + '”') if q else '⚠ 인용 없음 → 세그 불일치, 교체 대상'}")
-        extra = [c for c in rec["candidates"][10:] if c["chosen"]]
-        for c in extra:
-            L.append(f"| {c['rank']} | **{str(c.get('uuid'))[:8]}** | {c['score']} | {c.get('age','')} | "
-                     f"{c.get('sex','')} | {c.get('occupation','')} | {c.get('income_bracket','')} |")
         L.append("")
         segflags = [f for f in flags if f["seg"] == rec["seg"]]
         L.append("**선발 쏠림 감사** (하드 필터 필드 제외)")
@@ -247,7 +296,7 @@ def write_audit_md(records, flags, path):
     # 반복 🟡/🔴이면 우연이 아니라 점수식이 그 필드를 보고 있다는 뜻이다.
     byf = {}
     for f in flags:
-        if f["level"] in ("🟡", "🔴") and f["field"] not in ("score", "rank"):
+        if f["level"] in ("🟡", "🔴") and f["field"] not in ("score", "rank", "pool", "fit"):
             byf.setdefault(f["field"], set()).add(f["seg"])
     rep = {k: v for k, v in byf.items() if len(v) >= 2}
     if rep:
@@ -276,9 +325,10 @@ def main():
     ap.add_argument("log")
     ap.add_argument("--accepted", nargs="*", default=[])
     ap.add_argument("--md", default=None)
+    ap.add_argument("--handoff", action="store_true", help="2-b 룩어라이크로 넘길 패널 — 풀 점검 필수")
     a = ap.parse_args()
     recs = json.load(open(a.log, encoding="utf-8"))["segments"]
-    flags = audit_selection(recs, a.accepted)
+    flags = audit_selection(recs, a.accepted, handoff=a.handoff)
     for f in flags:
         print(f"{f['level']} [{f['seg']}] {f['field']}: {f['msg']}")
     if a.md:
