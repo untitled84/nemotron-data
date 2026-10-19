@@ -177,7 +177,16 @@ def audit_selection(records, accepted=(), handoff=False):
                               "msg": "풀 점검 없음 — 2-b로 넘길 풀인데 0점(세그 아님) 비율을 안 쟀다. 무작위 25명을 읽어 log_pool_check."})
         else:
             z = pc.get("zero_pct")
-            if z is not None and z > POOL_ZERO_MAX and pc.get("mode") == "sampled":
+            # 점검은 실제 선발 풀에서 — 다른 rg·다른 그물로 잰 숫자는 이 풀의 숫자가 아니다
+            cu = {c["uuid"] for c in cand}
+            jd = pc.get("judged") or {}
+            must = [u for u, v in jd.items() if pc.get("mode") == "sampled" or int(v) > 0]   # full/top_read는 0점이 풀에서 빠졌으니 1·2점만
+            outside = [u[:8] for u in must if u not in cu]
+            if outside:
+                flags.append({"seg": seg, "field": "pool", "level": "🔴",
+                              "msg": f"풀 점검에서 읽은 {len(outside)}/{len(must)}명이 선발 풀 밖 ({outside[:3]}…) — 다른 rg나 다른 그물의 풀로 쟀다. "
+                                     f"실제 선발 풀에서 다시 점검하라."})
+            elif z is not None and z > POOL_ZERO_MAX and pc.get("mode") == "sampled":
                 big = (rec.get("pool_size") or 0) > POOL_FULL_READ_MAX
                 flags.append({"seg": seg, "field": "pool", "level": "🔴",
                               "msg": f"풀 0점 {z}% > {POOL_ZERO_MAX}% (표본 {pc['n_read']}명) — 풀에 세그가 아닌 사람이 섞여 있다. "
