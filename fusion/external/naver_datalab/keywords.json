@@ -1,0 +1,13 @@
+{
+  "_설명": "그룹당 키워드 최대 20개, 한 번 호출에 그룹 최대 5개(앵커 포함). anchor는 모든 호출에 함께 넣어 셀 간 비교 기준으로 쓴다.",
+  "anchor": {"groupName": "커피", "keywords": ["커피", "카페"]},
+  "groups": [
+    {"groupName": "컴포즈커피", "keywords": ["컴포즈커피", "컴포즈 커피", "컴포즈"]},
+    {"groupName": "메가커피", "keywords": ["메가커피", "메가MGC커피", "메가 커피"]},
+    {"groupName": "스타벅스", "keywords": ["스타벅스", "스벅"]},
+    {"groupName": "저가커피", "keywords": ["저가커피", "저가 커피", "빽다방", "더벤티"]}
+  ],
+  "startDate": "2025-10-01",
+  "endDate": "2026-09-30",
+  "timeUnit": "month"
+}

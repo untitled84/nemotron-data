@@ -10,5 +10,6 @@ Public mirror (CC BY 4.0, source: https://huggingface.co/datasets/nvidia/Nemotro
 - `parts/` — 146 byte-range parts (`head`, `rgNN_s` = 35 structural columns, `rgNN_t` = 16 text columns, `footer`)
 - `manifest.json` — offset / length / sha256 per part, plus the whole-file sha256
 - `skill_scripts/` — `nemotron_remote.py` (`open_nemotron()`) and the remote-aware `signal_scan.py` for the nemotron-panel-synthesis skill
+- `fusion/` — composenemotron 2nd-stage fusion (no quant): public trend-report summaries (no PDFs), Statistics Korea time-use table cells, Naver DataLab relative indices, and `fusion.py`/`external.py`/`trends.py`
 
 Verified 2026-10-16: reassembled sha256 equals the original (8128b83c…0332); 441 column reads, `load_adaptive` and `signal_scan --deep` output identical to the local original.
