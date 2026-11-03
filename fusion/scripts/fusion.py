@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""composenemotron 2차 합성 — 니모트론 패널(panel.json) 위에 트렌드·웹·외부 실측·소셜 맥락을 얹는다. 정량 매칭 없음.
+"""composenemotron 2차 합성(컴포즈 커피 전용) — 니모트론 패널(panel.json) 위에 트렌드·웹·외부 실측·소셜 맥락을 얹는다. 정량 매칭 없음.
 
     import fusion as fu
     fused = fu.merge("<out>/panel.json", authored, meta_fusion)   # 융합층은 추가만 (원본 무변형)
@@ -7,9 +7,9 @@
     fu.save(fused, "<out>")                                       # personas_fused.json + personas_fused.html
 
 사실의 위계: 니모트론 원본 [Q] > 원본에서 유도 [Q-derived] > 트렌드·외부 실측 [T]/[X](집단) > [INF] 해석 > [가설].
-정량 응답이 없으므로 브랜드 이력·카테고리 이용·SNS 이용은 개인 사실이 아니라 **[가설]** — FGD에서 흔들어 볼 대상이다.
+정량 응답이 없으므로 브랜드 이력(과거·현재·다음 컴포즈 의향)·커피 이용 디테일·SNS 이용은 개인 사실이 아니라 **[가설]** — FGD에서 흔들어 볼 대상이다.
 
-meta_fusion = {"brand": "<브랜드 — 없으면 ''>", "category": "<카테고리 — 예: 커피>", "sources": [...], "conflicts_current": [...],
+meta_fusion = {"brand": "컴포즈 커피", "category": "커피", "sources": [...], "conflicts_current": [...],
                "report_gap": "<fusion/trends/에 맞는 리포트가 정말 없을 때만 사유>"}
 
 authored = {uuid: {
@@ -22,9 +22,9 @@ authored = {uuid: {
    "media_grounding": [{"tag":"[X:유튜브]","from","value"}],
    "common_ground": {"band":"20대","items":[{"item","level":"보편|다수|추정","stat":"..%","source","when","tag","url"}],"excluded":[...],"personal_override":[...]},
    "life_scenes": [{"area":"식생활|여가·취향|일|관계|동네·주거","text","body_fields":[...],"tag":"[Q]|[Q-derived]","quote":"<선택: 원문 일부>"}],  # 4영역+ · 건강 필드 금지
-   "category_moments": [{"scene","text","body_fields":[...],"tag":"[Q]|[Q-derived]|[가설]|[Q-derived]+[가설]","quote":"<[Q]면 필수: 원문 일부>"}],  # 2~3
-   "brand_relation": {"past","now","next","story","tag":"[가설]","trigger","trigger_tag":"[INF]","fgd_probe":"<FGD에서 이 가설을 흔들 질문>"},
-   "category_meaning": {"role":"보상|연료|쉼|사교|절제|습관|탐험|관리|정체성|과시","line","basis":[니모트론 필드...]},
+   "coffee_moments": [{"scene","text","body_fields":[...],"tag":"[Q]|[Q-derived]|[가설]|[Q-derived]+[가설]","quote":"<[Q]면 필수: 원문 일부>"}],  # 2~3
+   "brand_biography": {"past","now","next","story","tag":"[가설]","trigger","trigger_tag":"[INF]","fgd_probe":"<FGD에서 이 가설을 흔들 질문>"},
+   "coffee_meaning": {"role":"보상|연료|쉼|사교|절제|습관|탐험","line","basis":[니모트론 필드...]},
    "adjacent_consumption": [{"item","tag":"[Q]|[Q-derived]|[T:리포트]|[가설]","basis","key":"<[T:리포트]면 파일명>"}],   # 2건+
    "voice": {"habits":[...],"samples":[3문장],"basis":["big5", ...]},
    "external": [{"dataset":"time_use|naver_datalab|media_panel","tag":"[X:생활시간]|[X:데이터랩]|[X:미디어패널]","fact","cell","used_in","source","when"}],
@@ -39,7 +39,7 @@ band_of = lambda a: next(n for lo, hi, n in BANDS if lo <= a <= hi)   # 니모�
 USAGE_RULE_FUSION = (
     "fused는 정량 매칭 없는 2차 합성이다. 사실 근거는 raw(니모트론 원본 [Q])와 rows뿐이다. "
     "fused.trend_context·external·instagram.grounding·media_grounding·rising_feed는 집단·플랫폼 수준 맥락이다 — '요즘 내 또래는 ~라던데'는 정상, '그래서 나도 ~했다'는 위반. "
-    "fused.brand_relation·sns_use([가설]일 때)·category_moments 중 [가설] 장면은 **검증되지 않은 가설**이다 — 말하되 모더레이터가 파고들면 흔들릴 수 있어야 하고, "
+    "fused.brand_biography·sns_use([가설]일 때)·coffee_moments 중 [가설] 장면은 **검증되지 않은 가설**이다 — 말하되 모더레이터가 파고들면 흔들릴 수 있어야 하고, "
     "참여자가 '사실 잘 모르겠다'로 물러서는 것도 정상이다. 가설을 지키려고 이야기를 덧붙이지 마라. fgd_probe는 그 가설을 흔들 질문이다. "
     "fused.media_diet·instagram은 [추정] 프로젝션이다 — 실제로 그 계정을 운영한다고 말하지 마라. "
     "fused.common_ground가 발화의 하한선이다: 보편=당연히 앎, 다수=개인 신호 없으면 '아마', 추정='들어는 봤을 법', excluded=모를 수 있음. "
@@ -50,7 +50,7 @@ USAGE_RULE_FUSION = (
 HEALTH_FIELDS = {"bmi_status", "blood_pressure_status", "blood_sugar_status", "waist_status", "smoking_status",
                  "drinking_status", "healthcare_persona"}
 LIFE_AREAS = {"식생활", "여가·취향", "일", "관계", "동네·주거"}
-MEANING_ROLES = {"보상", "연료", "쉼", "사교", "절제", "습관", "탐험", "관리", "정체성", "과시"}
+MEANING_ROLES = {"보상", "연료", "쉼", "사교", "절제", "습관", "탐험"}
 MOMENT_TAGS = {"[Q]", "[Q-derived]", "[가설]", "[Q-derived]+[가설]", "[Q]+[가설]"}
 X_TAGS = {"time_use": "[X:생활시간]", "media_panel": "[X:미디어패널]", "naver_datalab": "[X:데이터랩]"}
 ABS_VOLUME = re.compile(r"검색(량|수|건수)\s*[:은는이가]?\s*\d")
@@ -75,6 +75,24 @@ def _age_in(age, label):
 
 def _raw_text(raw):
     return " ".join(str(v) for v in raw.values() if isinstance(v, str))
+
+
+def stamp_titles(panel_json, panel):
+    """render.save_panel_json은 이름표(title)를 버린다 — 저장 직후 panel.json에 다시 찍는다.
+    panel["segments"][i]의 title(세그 정의)·subtitle, people[j]의 title(페르소나 정의 한 줄).
+    persona-qual-fgd는 세그 이름으로 segments[].title을 쓴다."""
+    doc = json.load(open(panel_json, encoding="utf-8"))
+    by_seg = {s["name"]: s for s in panel["segments"]}
+    for s in doc["segments"]:
+        src = by_seg.get(s["name"]) or {}
+        assert src.get("title"), f"세그 '{s['name']}' title(세그 정의) 없음"
+        s["title"] = src["title"]; s["subtitle"] = src.get("subtitle") or s["name"]
+        pt = {str(p.get("uuid")): p.get("title") for p in src.get("people", [])}
+        for p in s["personas"]:
+            assert pt.get(p["uuid"]), f"{p['name']} title(페르소나 정의) 없음"
+            p["title"] = pt[p["uuid"]]
+    json.dump(doc, open(panel_json, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    return panel_json
 
 
 def merge(panel_json, authored, meta_fusion):
@@ -196,22 +214,22 @@ def verify(fused, panel_json, trends_dir=None):
             assert len(str(x.get("text", ""))) >= 15 and x.get("tag") in ("[Q]", "[Q-derived]"), f"{nm} life_scenes '{x.get('area')}' 본문·태그([Q]|[Q-derived])"
             _fields_ok(x.get("body_fields"), f"life_scenes·{x.get('area')}"); cited |= set(x["body_fields"])
             if x.get("quote"): _quote_ok(x["quote"], f"life_scenes·{x.get('area')}")
-        cm = F.get("category_moments", [])
-        assert 2 <= len(cm) <= 3, f"{nm} category_moments {len(cm)}장면 (2~3)"
+        cm = F.get("coffee_moments", [])
+        assert 2 <= len(cm) <= 3, f"{nm} coffee_moments {len(cm)}장면 (2~3)"
         for x in cm:
             tg = x.get("tag")
-            assert tg in MOMENT_TAGS, f"{nm} category_moments '{x.get('scene')}' 태그 {tg} — {sorted(MOMENT_TAGS)}"
-            _fields_ok(x.get("body_fields"), "category_moments"); cited |= set(x["body_fields"])
-            if tg.startswith("[Q]"): _quote_ok(x.get("quote"), f"category_moments '{x.get('scene')}'([Q]는 원문 인용 필수)")
+            assert tg in MOMENT_TAGS, f"{nm} coffee_moments '{x.get('scene')}' 태그 {tg} — {sorted(MOMENT_TAGS)}"
+            _fields_ok(x.get("body_fields"), "coffee_moments"); cited |= set(x["body_fields"])
+            if tg.startswith("[Q]"): _quote_ok(x.get("quote"), f"coffee_moments '{x.get('scene')}'([Q]는 원문 인용 필수)")
             hyp_total += "[가설]" in tg
-        br = F.get("brand_relation") or {}
-        assert br.get("tag") == "[가설]", f"{nm} brand_relation.tag는 '[가설]' — 정량 없이 브랜드 이력은 사실이 아니다"
-        assert all(br.get(k) for k in ("past", "now", "next")) and len(str(br.get("story", ""))) >= 30, f"{nm} brand_relation past·now·next·story(30자+)"
-        assert br.get("trigger") and br.get("trigger_tag") == "[INF]", f"{nm} brand_relation trigger([INF])"
-        assert len(str(br.get("fgd_probe", ""))) >= 8, f"{nm} brand_relation.fgd_probe — 이 가설을 FGD에서 흔들 질문"
+        br = F.get("brand_biography") or {}
+        assert br.get("tag") == "[가설]", f"{nm} brand_biography.tag는 '[가설]' — 정량 없이 브랜드 이력은 사실이 아니다"
+        assert all(br.get(k) for k in ("past", "now", "next")) and len(str(br.get("story", ""))) >= 30, f"{nm} brand_biography past·now·next·story(30자+)"
+        assert br.get("trigger") and br.get("trigger_tag") == "[INF]", f"{nm} brand_biography trigger([INF])"
+        assert len(str(br.get("fgd_probe", ""))) >= 8, f"{nm} brand_biography.fgd_probe — 이 가설을 FGD에서 흔들 질문"
         hyp_total += 1
-        mn = F.get("category_meaning") or {}
-        assert mn.get("role") in MEANING_ROLES and mn.get("line") and mn.get("basis"), f"{nm} category_meaning role({sorted(MEANING_ROLES)})·line·basis"
+        mn = F.get("coffee_meaning") or {}
+        assert mn.get("role") in MEANING_ROLES and mn.get("line") and mn.get("basis"), f"{nm} coffee_meaning role({sorted(MEANING_ROLES)})·line·basis"
         cited |= {b for b in mn["basis"] if b in raw}
         ac = F.get("adjacent_consumption", [])
         assert len(ac) >= 2, f"{nm} adjacent_consumption {len(ac)}건 (<2)"
@@ -238,8 +256,7 @@ def verify(fused, panel_json, trends_dir=None):
             if ds == "naver_datalab":
                 assert not ABS_VOLUME.search(x["fact"]), f"{nm} 데이터랩 ratio는 상대값: {x['fact'][:40]}"
         assert any(x.get("dataset") == "time_use" for x in xs) or "time_use" not in x_avail, f"{nm} [X:생활시간] 1건+ (집계표가 있다)"
-        if "naver_datalab" in x_avail and not any(x.get("dataset") == "naver_datalab" for x in xs):
-            warn.append(f"{nm} [X:데이터랩] 미사용(기본 파일 키워드가 카테고리와 다르면 정상)")
+        assert any(x.get("dataset") == "naver_datalab" for x in xs) or "naver_datalab" not in x_avail, f"{nm} [X:데이터랩] 1건+ (커피·컴포즈 키워드 집계표가 있다)"
 
         # ── 소셜 실측
         igg = ig.get("grounding", []); mg = F.get("media_grounding", [])
@@ -296,7 +313,7 @@ def verify(fused, panel_json, trends_dir=None):
                 assert not (ig.get("style") == st2 and len(set(g) & set(g2)) >= max(2, len(g) // 2)), f"{s.get('title') or s['name']}: {p['name']}·{nm2} 인스타 style 같고 grid 절반+ 겹침"
             seen[p["name"]] = (ig.get("style"), g)
 
-    lines.append(f"✅ 가설 규율: {n}명 · 브랜드 관계 전원 [가설]+FGD 검증 질문 · [가설] 층 총 {hyp_total}건 · SNS 이용 근거 태그")
+    lines.append(f"✅ 가설 규율: {n}명 · 브랜드 전기 전원 [가설]+FGD 검증 질문 · [가설] 층 총 {hyp_total}건 · SNS 이용 근거 태그")
     lines.append(f"✅ 상식 기저: 연령대(원본 나이) 일치 · 등급↔수치 일치 · SNS 가설과 충돌 시 override")
     lines.append(f"✅ 융합 기준: 트렌드 3건+·3축+ (리포트 사용 {n_rep}명{'' if n_rep == n else ' · report_gap: ' + str(report_gap)}) · 리포트 연령 적합 · "
                  f"일기 7~8줄(트렌드 2줄+·개인화 없음) · 미디어·인스타 SNS 가설 정합 · 세그 내 인스타 중복 없음 · 오염(해석+가설 ≤ 앵커, 2차층 ≤ 앵커×2)")
@@ -304,7 +321,7 @@ def verify(fused, panel_json, trends_dir=None):
     lines.append("✅ 소셜 실측: " + (" · ".join(f"{k} 요약" for k in social) if social else "이 실행에 수집 없음")
                  + (f" · 인스타 이용 가설 {n_ig}명 근거 2건+" if "instagram" in social else "") + (f" · 유튜브 {n_yt}명" if "youtube" in social else ""))
     lines.append("✅ 떠오르는 콘텐츠: " + (f"풀 {', '.join(sorted(rising))} · {n_rf}명 3~5건 · 관심사 매칭·풀 실재" if rising else "이 실행에 수집 없음"))
-    lines.append(f"✅ 몸체 결합: {n}명 · 생활 장면 4영역+(건강 필드 없음) · 카테고리 장면 2~3([Q]는 원문 인용 실재) · 의미 · 인접 소비 2+ · 말투 3")
+    lines.append(f"✅ 몸체 결합: {n}명 · 생활 장면 4영역+(건강 필드 없음) · 커피 장면 2~3([Q]는 원문 인용 실재) · 의미 · 인접 소비 2+ · 말투 3")
     if warn:
         lines.append("ℹ️ 참고(실패 아님): " + " · ".join(warn[:8]) + (f" 외 {len(warn) - 8}건" if len(warn) > 8 else ""))
     fused["meta"]["fusion"]["preservation"] = " / ".join(lines)
@@ -322,20 +339,20 @@ def _ga(w):
 
 def render_html(fused, path):
     M = fused.get("meta", {}); FU = M.get("fusion", {})
-    cat = FU.get("category") or "카테고리"; brand = FU.get("brand") or ""
+    cat = FU.get("category") or "커피"; brand = FU.get("brand") or "컴포즈 커피"
     secs = ""; probes_all = []
     for s in fused["segments"]:
         cards = ""
         for p in s["personas"]:
             F = p["fused"]; ig = F.get("instagram", {}); cg = F.get("common_ground", {}); su = F.get("sns_use", {})
-            br = F.get("brand_relation", {}); mn = F.get("category_meaning", {}); vc = F.get("voice", {})
+            br = F.get("brand_biography", {}); mn = F.get("coffee_meaning", {}); vc = F.get("voice", {})
             if br.get("fgd_probe"): probes_all.append((p.get("name", ""), s.get("title") or s.get("name", ""), br["fgd_probe"]))
             diary = "".join(f'<p class="{"tr" if i in F.get("diary_trend_lines", []) else ""}">{_e(l)}</p>' for i, l in enumerate(F["diary"]))
             tc = "".join(f'<li><span class="tg t">{_e(t["tag"])}</span> {_e(t["fact"])} <span class="src">— {_e(t["source"])}, {_e(t["when"])}</span></li>' for t in F["trend_context"])
             cgi = "".join(f'<li><b>{_e(i["level"])}</b> {_e(i["item"])} <span class="src">{_e(i.get("stat",""))} · {_e(i["source"])} {_e(i["when"])}</span></li>' for i in cg.get("items", []))
             cgx = "".join(f'<li>제외 · {_e(i["item"])} <span class="src">{_e(i.get("reason",""))}</span></li>' for i in cg.get("excluded", []))
             ls_h = "".join(f'<li><b>{_e(x.get("area",""))}</b> {_e(x.get("text",""))} <span class="tg q">{_e(x.get("tag",""))}</span></li>' for x in F.get("life_scenes", []))
-            cm_h = "".join(f'<li><b>{_e(x.get("scene",""))}</b> {_e(x.get("text",""))} <span class="tg {"h" if "가설" in x.get("tag","") else "q"}">{_e(x.get("tag",""))}</span></li>' for x in F.get("category_moments", []))
+            cm_h = "".join(f'<li><b>{_e(x.get("scene",""))}</b> {_e(x.get("text",""))} <span class="tg {"h" if "가설" in x.get("tag","") else "q"}">{_e(x.get("tag",""))}</span></li>' for x in F.get("coffee_moments", []))
             ac_h = "".join(f'<li><span class="tg {"h" if x.get("tag")=="[가설]" else "t"}">{_e(x.get("tag",""))}</span> {_e(x.get("item",""))} <span class="src">{_e(x.get("basis",""))}</span></li>' for x in F.get("adjacent_consumption", []))
             xs_h = "".join(f'<li><span class="tg t">{_e(x.get("tag",""))}</span> {_e(x.get("fact",""))} <span class="src">셀 {_e(x.get("cell",""))} · {_e(x.get("source",""))} {_e(x.get("when",""))} → {_e(x.get("used_in",""))}</span></li>' for x in F.get("external", []))
             rf_h = "".join(f'<li><span class="tg t">{_e(r.get("tag",""))}</span> {_e(r.get("item",""))} <span class="src">{_e(r.get("level",""))} · 관심사 {_e(r.get("match",""))} → {_e(r.get("used_in",""))}</span></li>' for r in F.get("rising_feed", []))
@@ -345,10 +362,10 @@ def render_html(fused, path):
             au += "".join(f'<li><b>계산 · {_e(k)}</b> {_e(v)}</li>' for k, v in F.get("audit_computed", {}).items())
             cards += f'''<div class="c"><div class="hd">{_e(p.get("title",""))}</div><div class="hs">{_e(p["header"])}</div>
 <div class="diary">{diary}</div>
-<h4>{_e(_ga(cat))} 놓이는 장면</h4><ul>{cm_h}</ul>
-<h4>브랜드 관계 <span class="tg h">가설</span></h4><p class="sm"><b>{_e(br.get("past",""))} → {_e(br.get("now",""))} → {_e(br.get("next",""))}</b><br>{_e(br.get("story",""))}<br><span class="src">계기 {_e(br.get("trigger",""))}</span> <span class="tg i">INF</span><br><span class="probe">FGD 검증 · {_e(br.get("fgd_probe",""))}</span></p>
-<h4>{_e(cat)}의 의미 <span class="tg i">INF</span></h4><p class="sm"><b>{_e(mn.get("role",""))}</b> — {_e(mn.get("line",""))}</p>
-<h4>{_e(cat)} 밖 소비</h4><ul>{ac_h}</ul>
+<h4>커피가 놓이는 장면</h4><ul>{cm_h}</ul>
+<h4>브랜드 전기 <span class="tg h">가설</span></h4><p class="sm"><b>{_e(br.get("past",""))} → {_e(br.get("now",""))} → {_e(br.get("next",""))}</b><br>{_e(br.get("story",""))}<br><span class="src">계기 {_e(br.get("trigger",""))}</span> <span class="tg i">INF</span><br><span class="probe">FGD 검증 · {_e(br.get("fgd_probe",""))}</span></p>
+<h4>커피의 의미 <span class="tg i">INF</span></h4><p class="sm"><b>{_e(mn.get("role",""))}</b> — {_e(mn.get("line",""))}</p>
+<h4>커피 밖 소비</h4><ul>{ac_h}</ul>
 {('<h4>요즘 피드에 뜨는 것 <span class="tg t">X·급상승</span></h4><ul>' + rf_h + '</ul>') if rf_h else ''}
 <h4>미디어 식단 <span class="tg i">추정</span></h4><p class="sm">{_e(F.get("media_diet",""))}</p><div class="src">SNS 이용 {_e(su.get("tag",""))}: {_e(", ".join(su.get("platforms", [])) or "미이용")} — {_e(su.get("basis",""))}</div>{"".join(f'<div class="src"><span class="tg t">{_e(g.get("tag",""))}</span> {_e(g.get("from",""))}: {_e(g.get("value",""))}</div>' for g in F.get("media_grounding", []))}
 <h4>인스타그램 프로젝션 <span class="tg i">INF·추정</span></h4><div class="ig"><b>{_e(ig.get("handle",""))}</b> · {_e(ig.get("style",""))}<br>{_e(ig.get("bio",""))}
